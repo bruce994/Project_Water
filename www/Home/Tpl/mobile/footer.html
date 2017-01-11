@@ -1,0 +1,54 @@
+
+<div class="m-03-footer-logo"><div class="m-03-context"><a class="m-03-footer-logo-link" href="{:U("Index/index",array("tm"=>"mobile"))}" title=" - 首页">首页</a></div></div>
+<div class="m-03-legal-notice">
+  <div class="m-03-context">
+    <div class="m_gFooterWrap">
+      <div class="hotline"></div>
+      <div class="hotline_dial" style=" background: url('/Home/Tpl/mobile/res/m_ico_small_30x30.png') 9px 3px no-repeat;background-size: 15px auto;"><a href="tel:{:C("site_tel")}" onclick="mztrack('g_footer_hotline_dial')">&nbsp;&nbsp;&nbsp;&nbsp;{:C("site_tel")}</a></div>
+      <div class="links" style="background-color:transparent;min-height:auto;"><a href="#">网站地图</a> | <a href="#">使用及隐私条款</a> | <a href="tel:{:C("site_tel")}">联系我们</a></div>
+       <a class="gLangSwitch  en" style="background-image: url('/Home/Tpl/mobile/res/ico_lang_35x35.png')"  href="#"></a> 
+      <div class="copyright">©{:C("copyright")}</div>
+    </div>
+    </div></div><div id="zoomImageShade"></div><div id="knowledgeBaseShade"></div><div id="knowledgeBase"></div><div id="divPopupShade"></div><div id="divPopup"></div>
+
+
+
+<script src="__PUBLIC__/static/bootbox.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  function alertMsg(msg){
+      bootbox.dialog({
+              message:  msg,
+              title: "提示",
+              buttons: {
+                success: {
+                  label: "关闭",
+                  className: "btn-default",
+                },
+              }
+            });
+  }
+</script>
+
+
+
+
+      <div class="modal fade" tabindex="-1"  id="myModalApp"  role="dialog" >
+          <div class="modal-dialog modal-sm" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" style="text-align:center;">抄描二维码下载APP</h4>
+                  </div>
+                  <div class="modal-body" style="padding:0px;">
+                      <?php
+                      $url = C("site_url")."/misc/phpqrcode/index.php?url=".urlencode(C("site_url")."/water.apk");
+                      ?>
+                      <img src="{:$url}" style="width:100%;height:auto;"  />
+                  </div>
+                  
+              </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+
+

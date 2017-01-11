@@ -1,0 +1,64 @@
+
+<style type="text/css">
+  .popup-body{text-align: center;}
+</style>
+<ion-view view-title="我的信息">
+    <ion-content>
+        <div class="wrapper" style="background:#fff;">
+
+          <div class="top">
+            <ul style="margin:0px;">
+              <li><a href="#/tab/main/{{member.mid}}" class="ryy_return">&lt;&nbsp;返回</a></li>
+              <li><a href="#/tab/member">我的信息</a></li>
+            </ul>
+          </div>
+
+
+<div class="my-info">
+    <dl>
+        <a href="#/tab/member_edit#face" style="color:#000;">
+            <dt><span>头像</span><i><img ng-src="{{member.face?member.face:'Public/images/face.png'}}"><img src="Public/android/theme/bg/bg10.gif" class="k" style="margin-top:42px;"></i></dt>
+        </a>
+        <a href="#/tab/member_edit#uname" style="color:#000;">
+            <dd><span>昵称</span><i><em>{{member.uname}}</em><img src="Public/android/theme/bg/bg10.gif" class="k"></i></dd>
+        </a>
+        <a href="/andMember/index.php/Public/qrcode.html" style="color:#000;">
+            <dd><span>我的二维码</span><i><img ng-src="{{member.qrcode_url}}" height="18" class="ewm"><img src="Public/android/theme/bg/bg10.gif" class="k"></i></dd>
+        </a>
+        <a href="#/tab/member_pwd" style="color:#000;">
+            <dd><span>修改密码</span><i><img src="Public/android/theme/bg/bg10.gif" class="k"></i></dd>
+        </a>
+    </dl>
+    <dl>
+        <a href="#/tab/member_edit#cardID" style="color:#000;">
+            <dd style="border-top:0px;"><span>身份证信息</span><i><em>{{member.cardID}}</em><img src="Public/android/theme/bg/bg10.gif" class="k"></i></dd>
+        </a>
+        <a href="#/tab/member_edit#tel" style="color:#000;">
+            <dd><span>手机号</span><i><em>{{member.tel}}</em><img src="Public/android/theme/bg/bg10.gif" class="k"></i></dd>
+        </a>
+    </dl>
+    <dl>
+
+        <a href="#" style="color:#000;"  ng-repeat="vo in list">
+            <dd style="border-top:none;"><span>收货地址</span><i><em>{{vo.address}}</em><img src="Public/android/theme/bg/bg10.gif" class="k"></i></dd>
+        </a>
+
+
+        <a href="javascript:void(0);" style="color:#000;" ng-click="about();">
+            <dd><span>关于</span><i><img src="Public/android/theme/bg/bg10.gif" class="k"></i></dd>
+        </a>
+    </dl>
+        <input type="button" class="info-sub" value="退出登录" ng-click="logout();">
+</div>
+
+
+
+
+
+
+         </div>
+        <!-- ./wrapper -->
+    </ion-content>
+</ion-view>
+
+

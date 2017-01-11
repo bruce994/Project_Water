@@ -1,0 +1,63 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8">
+<title>{$vo.title}-{:C("site_name")}</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<metaname="screen-orientation"content="portrait">
+<metaname="x5-orientation"content="portrait">
+<link rel="stylesheet" type="text/css" href="/Home/Tpl/{:$_GET['tm']}/theme/css/style.css">
+<link rel="stylesheet" type="text/css" href="/Home/Tpl/{:$_GET['tm']}/theme/css/swiper-3.3.1.min.css">
+<script type="text/javascript" src="/Home/Tpl/{:$_GET['tm']}/theme/common/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="/Home/Tpl/{:$_GET['tm']}/theme/common/swiper.js"></script>
+</head>
+
+<body>
+
+<div class="top">
+
+<ul>
+    <li><a href="javascript:void(0);" class="ryy_return">&lt;&nbsp;返回</a></li>
+<li><a href="{:U("Index/type",array("typeid"=>$vo['typeid'],"tm"=>"android"))}">{$type.typename}</a></li>
+<li><a href="javascript:void(0);" onclick="window.plugins.socialsharing.share('{$vo.title}', null, null, '{:C("site_url")}{:U("Index/article",array("id"=>$_GET['id'],"tm"=>"mobile"))}')">...</a></li>
+</ul>
+
+</div>
+
+<div class="layout">
+
+<div class="detail-title">
+
+<h2>{$vo.title}</h2>
+
+<span>{$vo['pubdate']|date="Y-m-d",###} <i>心水乐</i></span>
+
+</div>
+
+<div class="editor">
+     {$vo.body}
+</div>
+
+<div class="read"><span>阅读 {$vo.click}</span><img src="/Home/Tpl/{:$_GET['tm']}/theme/bg/bg8.gif" style="cursor: pointer;" onclick="goodPost();"><a href="javascript:void(0);" id="goodPost">{$vo.goodpost}</a></div>
+
+</div>
+
+
+
+
+<script type="text/javascript">
+  function goodPost(){
+    $.get( "{:U("Public/goodPost",array("id"=>$vo['id']))}", function( data ) {
+      $( "#goodPost" ).text( data );
+    });
+  }
+</script>
+
+
+
+<include file="android/cordova" />
+<script src="/cordova/www/SocialSharing.js"></script>
+
+
+</body>
+
+</html>

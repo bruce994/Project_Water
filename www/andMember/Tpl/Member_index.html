@@ -1,0 +1,149 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<metaname="screen-orientation"content="portrait">
+<metaname="x5-orientation"content="portrait">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/android/theme/css/style.css">
+<script src="__PUBLIC__/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+</head>
+
+<body>
+
+<div class="top">
+
+<ul style="margin:0px;">
+<li><a href="javascript:void(0);" class="ryy_return">&lt;&nbsp;返回</a></li>
+<li><a href="{:U("Member/edit")}">我的信息</a></li>
+</ul>
+
+</div>
+
+<div class="my-info">
+
+<form>
+
+<dl>
+
+
+
+<a href="{:U("Member/edit",array("ss"=>1))}#face" style="color:#000;">
+<dt><span>头像</span><i><img src="<?php echo empty($vo['face'])?"/Public/images/face.png":$vo['face'];?>"><img src="__PUBLIC__/android/theme/bg/bg10.gif" class="k" style="margin-top:42px;"></i></dt>
+</a>
+
+
+
+
+<a href="{:U("Member/edit",array("ss"=>1))}#uname" style="color:#000;">
+<dd><span>昵称</span><i><em>{$vo.uname}</em><img src="__PUBLIC__/android/theme/bg/bg10.gif" class="k"></i></dd>
+</a>
+
+
+<?php
+$qrcode = "../Public/qrcode/".$_SESSION["member"]['mid'].'_qrcode.png';
+$url = C("site_url")."/misc/phpqrcode/index.php?url=".urlencode(C("site_url")."/Member/index.php?m=Public&a=reg&re_userid=". $_SESSION["member"]['userid']);
+if(!file_exists($qrcode)){
+    file_put_contents($qrcode, file_get_contents($url));
+}
+$qrcode_url = C("site_url").str_replace('..','',$qrcode);
+
+?>
+
+<a href="{:U("Public/qrcode")}"   style="color:#000;">
+<dd ><span>我的二维码</span><i><img src="{:$qrcode_url}" height="18" class="ewm"><img src="__PUBLIC__/android/theme/bg/bg10.gif" class="k"></i></dd>
+</a>
+
+<a href="{:U("Member/pwd",array("ss"=>1))}" style="color:#000;">
+<dd><span>修改密码</span><i><img src="__PUBLIC__/android/theme/bg/bg10.gif" class="k"></i></dd>
+</a>
+</dl>
+
+<dl>
+<a href="{:U("Member/edit",array("ss"=>1))}#cardID" style="color:#000;">
+<dd style="border-top:0px;"><span>身份证信息</span><i><em>{$vo.cardID}</em><img src="__PUBLIC__/android/theme/bg/bg10.gif" class="k"></i></dd>
+</a>
+<a href="{:U("Member/edit",array("ss"=>1))}#tel" style="color:#000;">
+<dd><span>手机号</span><i><em>{$vo1.tel}</em><img src="__PUBLIC__/android/theme/bg/bg10.gif" class="k"></i></dd>
+</a>
+</dl>
+
+<dl>
+
+    <?php
+    $tmp_list = M("Shops_userinfo")->where("mid=".$_SESSION [C ( 'USER_AUTH_KEY' )])->select();
+    $i = 0;
+    foreach($tmp_list as $dd){
+    $i++;
+    ?>
+    <a href="{:U("Member/address",array("ss"=>1))}" style="color:#000;">
+        <dd <?php if($i == 1){ ?> style="border-top:none;" <?php } ?> ><span>收货地址</span><i><em>{:$dd['address']}</em><img src="__PUBLIC__/android/theme/bg/bg10.gif" class="k"></i></dd>
+    </a>
+    <?php }
+
+    if($i == 0){ ?>
+        <a href="{:U("Member/address",array("ss"=>1))}" style="color:#000;">
+                <dd  style="border-top:none;"  ><span>收货地址</span><i><em></em><img src="__PUBLIC__/android/theme/bg/bg10.gif" class="k"></i></dd>
+            </a>
+    <?php } ?>
+
+<a data-toggle="modal" data-target="#nt_about"  href="javascript:void(0);" style="color:#000;">
+  <dd><span>关于</span><i><img src="__PUBLIC__/android/theme/bg/bg10.gif" class="k"></i></dd>
+</a>
+</dl>
+
+<a href="{:U("Public/logout")}"><input type="button" class="info-sub" value="退出登录"></a>
+
+</form>
+
+</div>
+
+</div>
+
+
+
+
+
+<div id="nt_about" class="modal modal-info">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <h4 class="modal-title">关于</h4>
+                          </div>
+                          <div class="modal-body">
+                                {:C("site_about")}
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">关闭</button>
+                          </div>
+                        </div><!-- /.modal-content -->
+                      </div><!-- /.modal-dialog -->
+  </div>
+
+
+
+<style type="text/css">
+  .modal-body p{height:0.1px;}
+</style>
+
+<!-- Bootstrap 3.3.5 -->
+<link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+<!-- Bootstrap 3.3.5 -->
+<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+<include file="Public:cordova" />
+
+<script src="/cordova/www/SocialSharing.js"></script>
+
+
+</body>
+
+</html>

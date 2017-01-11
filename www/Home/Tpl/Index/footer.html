@@ -1,0 +1,86 @@
+
+<script type="text/javascript" src="/Home/Tpl/Index/js/product1.js" charset="utf-8"></script>
+<div id="move2top"></div>
+
+
+<!--footer-->
+<div class="gFooter">
+  <div class="g_footer_links">
+    <p> 友情链接：
+    <?php
+      $link = M("Flink")->where("ischeck=1 and logo=''")->order("sortrank")->select();
+      foreach ($link as $value) {
+    ?>
+    <a href="{:$value['url']}" target="_blank" style="text-decoration:none;">{:$value['webname']}</a> | 
+    <?php
+      }
+    ?>
+    </p>
+  </div>
+  <div class="g_social_links">
+      <a class="wechat dim" data-toggle="modal" data-target=".wechat-modal-sm"></a>
+      <a class="sina dim" href="{:C("site_weibo")}"  target="_blank"></a>
+    <a class="tmall dim" href="http://wpa.qq.com/msgrd?v=3&uin={:C("site_qq")}&site=qq&menu=yes"  target="_blank" style="background: url(/Home/Tpl/Index/images/qq.png) center center no-repeat;background-size: 32px auto;"></a>
+  </div>
+  <div class="partition"></div>
+  <div class="hotline">服务热线<br/><span class="tel">{:C("site_tel")}</span></div>
+  <div class="copyright">&copy;{:C("copyright")}</div>
+</div>
+
+
+
+<div class="modal fade wechat-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <img src="{:C("site_qr")}" width="344" height="344"  class="img-responsive">
+    </div>
+  </div>
+</div>
+
+
+
+
+<script src="__PUBLIC__/static/bootbox.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  function alertMsg(msg){
+      bootbox.dialog({
+              message:  msg,
+              title: "提示",
+              buttons: {
+                success: {
+                  label: "关闭",
+                  className: "btn-default",
+                },
+              }
+            });
+  }
+</script>
+
+
+
+      <div class="modal fade" tabindex="-1"  id="myModalApp"  role="dialog" >
+          <div class="modal-dialog modal-sm" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" style="text-align:center;">抄描二维码下载APP</h4>
+                  </div>
+                  <div class="modal-body" style="padding:0px;">
+                      <?php
+                      $url = C("site_url")."/misc/phpqrcode/index.php?url=".urlencode(C("site_url")."/water.apk");
+                      ?>
+                      <img src="{:$url}" style="width:100%;height:auto;"  />
+                  </div>
+                  
+              </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+
+
+
+
+
+
+
+

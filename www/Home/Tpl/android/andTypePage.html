@@ -1,0 +1,20 @@
+<volist id="vo" name="list">
+<li><a href="{:U("Index/article",array("id"=>$vo["id"],"tm"=>"android"))}"><span>{$vo.title}</span>
+	<neq name="vo.litpic" value="">
+		<img src="{$vo.litpic}">
+	</neq>
+	<span>{$vo.description}...</span><i>心乐水&nbsp;&nbsp;{$vo['pubdate']|date="Y-m-d",###}</i><small>{$vo.click}&nbsp;&nbsp;阅读</small><div class="clear"></div></a></li>
+</volist>
+<div class="current" style="display:none;">
+<?php
+if( $currentPage >= $totalPages    ){
+?>
+0
+<?php
+}else{
+?>
+{$currentPage}
+<?php
+}
+?>
+</div>

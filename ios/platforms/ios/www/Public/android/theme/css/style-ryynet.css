@@ -1,0 +1,15 @@
+@charset "utf-8";
+.top{height:60px; background:url(../bg/bg1.jpg) no-repeat center bottom;}
+.top ul li{float:left; font-family:"微软雅黑";  text-align:left; padding-top:20px; line-height:30px;}
+.top ul li a{color:#FFF; display:block;font-size: 20px;color:#fff;font-weight: bold; }
+.top ul li a.hover{background:url(../bg/bg1.gif) no-repeat center 40px;}
+li, ol {
+    list-style: none;
+}
+
+
+
+
+
+
+

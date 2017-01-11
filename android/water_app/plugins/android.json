@@ -1,0 +1,27 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.ryynet"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.ryynet"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ryynet"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.ryynet"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.ryynet"
+        }
+    },
+    "dependent_plugins": {}
+}

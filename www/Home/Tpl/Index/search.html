@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,maximum-scale=1.0" />
+  <meta name="format-detection" content="telephone=no">
+    <title>{$type.typename}-{:C("site_name")}</title>
+    <meta name="keywords" content="{$type.typename}" />
+    <meta name="description" content="{$type.typename}" />
+  <!-- global style --> 
+  <link href="/Home/Tpl/Index/css/reset.css" rel="stylesheet"> 
+  <link href="/Home/Tpl/Index/css/flexslider.css" rel="stylesheet"> 
+  <link href="/Home/Tpl/Index/css/video-js.css" rel="stylesheet">   
+  <link href="/Home/Tpl/Index/css/style.pc.css" rel="stylesheet">
+<!--[if lt IE 9]>
+  <link  type="text/css" href="/Home/Tpl/Index/css/ie8.css" rel="stylesheet" />
+<![endif]-->
+<!-- JS --> 
+  <script src="/Home/Tpl/Index/js/jquery-1.11.3.min.js" charset="utf-8"></script>
+    <script src="/Home/Tpl/Index/js/main.js" charset="utf-8"></script>
+<!--[if lt IE 10]>
+      <script src="/Home/Tpl/Index/js/placeholders.min.js" charset="utf-8"></script>
+<![endif]-->
+<script type="text/javascript" src="/Home/Tpl/Index/js/global.js" charset="utf-8"></script>
+
+
+
+<link rel="stylesheet" href="/Home/Tpl/Index/xiaoyun/css/bootstrap.min.css">
+<link rel="stylesheet" href="/Home/Tpl/Index/xiaoyun/css/style.css">
+<script src="/Home/Tpl/Index/xiaoyun/libs/bootstrap/3.3.4/js/bootstrap.min.js" type="text/javascript"></script>
+
+
+
+
+</head>
+<body>
+
+
+<include file="head" />
+
+
+
+
+ 
+  
+    <div class="wrap">
+      <!-- main begin -->
+      <div class="content-panel">
+        <div class="container hidden-xs" style="min-height:35px;">
+        </div>
+        <div class="container">
+          <div class="col-md-9 blog-post" id="post_list">
+
+              <volist id="vo_h" name="list_h">
+              <div class="post post-hd clearfix">
+                  <h1 class="post-title clearfix">
+                      <a href="{:U("Index/article",array("id"=>$vo_h["id"]))}">{$vo_h.title}</a>
+                      <a href="{:U("Index/article",array("id"=>$vo_h["id"]))}" class="xyicon post-share" target="_blank" title="新窗口打开"></a>
+                  </h1>
+                  <div class="post-info">
+                      {$type.typename}
+                      / {$vo_h['pubdate']|date="Y-m-d",###}  </div>
+                  <div class="post-content" style="text-indent: 2em;line-height: 1.8em;"><a href="{:U("Index/article",array("id"=>$vo_h["id"]))}">{$vo_h.description}...</a>
+                  </div>
+                  <neq name="vo.litpic" value="">
+                  <div style="margin-top:15px;">
+                      <a href="{:U("Index/article",array("id"=>$vo_h["id"]))}">
+                          <img src="{$vo_h.litpic}" class="img-responsive img-rounded">
+                      </a>
+                  </div>
+                  </neq>
+                  <div class="post-line visible-xs"></div>
+              </div>
+              </volist>
+
+
+
+            <volist id="vo" name="list">
+            <div class="post post-hd clearfix">
+              <h1 class="post-title clearfix">
+              <a href="{:U("Index/article",array("id"=>$vo["id"]))}">{$vo.title}</a>
+              <a href="{:U("Index/article",array("id"=>$vo["id"]))}" class="xyicon post-share" target="_blank" title="新窗口打开"></a>
+              </h1>
+              <div class="post-info">
+                {$type.typename}
+              / {$vo['pubdate']|date="Y-m-d",###}  </div>
+             <div class="post-content" style="text-indent: 2em;line-height: 1.8em;"><a href="{:U("Index/article",array("id"=>$vo["id"]))}">{$vo.description}...</a>
+          </div>
+          <neq name="vo.litpic" value="">
+          <div style="margin-top:15px;">
+            <a href="{:U("Index/article",array("id"=>$vo["id"]))}">
+              <img src="{$vo.litpic}" class="img-responsive img-rounded">
+            </a>
+          </div>
+          </neq>
+          <div class="post-line visible-xs"></div>
+        </div>
+        </volist>
+
+
+        <if condition="$totalPages gt 1 ">
+        <div class="post post-hd clearfix" style="padding: 22px 15px 0;">
+          <div class="col-sm-5"><div class="dataTables_info">{$totalCount} 条记录 {$currentPage}/{$totalPages} 页</div></div>
+          <div class="col-sm-6">
+            <div class="dataTables_paginate paging_simple_numbers">
+            <ul class="pagination">
+              {$page}
+           </ul>
+          </div>
+          </div>
+        </div>
+        </if>
+
+
+      </div>
+      <div class="col-md-3 sidebar">
+        <div class="sidebar-widget nav-cat hidden-xs">
+          <h4><a href="bc" style="font-size:18px;color:#fff;text-decoration:none;">栏目分类</a></h4>
+          <ul>
+            
+          <?php
+            $reid = 0;
+            if(!empty($_GET['typeid'])){
+             $reid = $type['reid'];
+            }
+            $T = M("Arctype")->where("channeltype=".$type['channeltype']." and topid=0")->field("id,typename")->select();
+            $len = count($T);
+            $i = 0;
+            foreach ($T as $t) {
+                $i++;
+                $tmp = '';
+                if($t['id'] == $_GET['typeid'] || $t['id']==$reid){
+                  $tmp = 'active ';
+                }
+                if($len == $i){
+                  $tmp .= 'last-item';
+                }
+                echo '<li class="'.$tmp.'"><i></i><a href="'.U("Index/type",array("typeid"=>$t["id"])).'" title="'.$t["typename"].'">'.$t["typename"].'</a></li>'; 
+            }
+          ?>
+          <!-- /.循环分类 -->
+
+
+          </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+<include file="footer" />
+
+
+
+
+
+</body>
+</html>

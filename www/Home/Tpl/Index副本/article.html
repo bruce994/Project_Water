@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>{$vo.title}兴趣部落_懒人部落</title>
+<meta name="keywords" content="{$vo.title},{$vo.title}兴趣部落" />
+<meta name="description" content="{$vo.description}" /> 
+
+</head>
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+
+<link type="text/css" href="__PUBLIC__/css/newindex.css" rel="stylesheet" />
+
+<style type="text/css">
+.current_nav53{ border-bottom:3px solid #06a7e1;}
+.current_nav53 a{ color:#3399e0;}
+</style>
+
+
+<body>
+    
+<include file="head" />
+
+	<div class="navi_there">
+    当前位置： 
+	
+<a href="{:C("site_url")}">首页</a>{:navigation($type['id']," > ")}
+ 
+
+	
+	
+	
+		 
+		 
+		 </div>
+    <div class="main_case l">
+    	<div class="wrap l">
+        	<div class="wrappic l"><img src="{$vo.litpic}" width="102" height="102" title="{$vo.title}"/>
+               <br />
+            
+    <!--      <div class="viewc">
+               
+                <div class="info">
+                    <span class="xhbg">
+                    <a href="javascript:void(0);" class='xh' onmouseover="this.style.backgroundPosition='0 0'" onmouseout="this.style.backgroundPosition='-189px 0'" onclick="xh(this,21009,'xh')">&nbsp;&nbsp;<strong>0</strong></a></span>
+                </div>
+                
+                <div class="info">
+                    <span class="xhbg nxhbg"><a href="javascript:void(0);" class='xh' onmouseover="this.style.backgroundPosition='-567px 0'" onmouseout="this.style.backgroundPosition='-378px 0'" onclick="xh(this,21009,'nxh')">&nbsp;&nbsp;<strong>0</strong></a></span>
+                </div>
+                
+            </div>
+-->
+
+          <div class="viesad">
+          
+                                                </div>  
+            </div>
+           <div class="cont l">
+        	<div class="cont_box">
+            	<h1>{$vo.title}</h1>  
+                <div class="cont_r l">关注度：{$vo.click}人关注</div>
+            </div>
+            <ul>
+
+
+            	<li>
+                	<label>部落名称：</label>
+                    {$vo.title}                </li>
+
+
+					 <li>
+                	<label>关注量：</label>
+                  {$vo.guanzhu}     
+                </li>                <li>
+                	<label>话题量：</label>
+                      {$vo.huati}                </li>   
+
+
+                <li>
+                	<label>部落类型：</label>
+                   {$vo.leixing}          </li>
+               
+					
+
+
+<neq name="vo.weixinhao" value="">
+<li>
+<label>微信账号：</label>
+ {$vo.weixinhao}             
+</li>
+</neq>
+
+
+
+                <li>
+                	<label>部落分类：</label>
+                    <abbr>{:navigation($type['id'],"  ")}</abbr>
+                </li>
+                
+                
+               
+                <li>
+                	<label>收录时间：</label>
+                  {$vo['pubdate']|date="Y-m-d H:i:s",###}          </li>
+                <li>
+                 <!-- Baidu Button BEGIN -->
+                  <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" style="margin-top:10px;"> <span class="bds_more" style="line-height:15px;"></span> <a class="bds_qzone"></a> <a class="bds_tsina"></a> <a class="bds_tqq"></a> <a class="bds_renren"></a> <a class="bds_t163"></a> <a class="shareCount"></a> </div>
+                  <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=4897621" ></script>
+                  <script type="text/javascript" id="bdshell_js"></script>
+                  <script type="text/javascript">
+									document.getElementById("bdshell_js").src = "../bdimg.share.baidu.com/static/js/shell_v2.js@cdnversion=" + Math.ceil(new Date()/3600000)
+									</script>
+                  <!-- Baidu Button END -->
+
+
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","sqq","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+                </li>
+            </ul>
+        </div>
+         <div class="cont_cat l">
+        	<img src="{$vo.erweima}" title="使用手机打开二维码扫描，将手机摄像头对准二维码图片扫描即可。" width="225" height="225"/>
+          	<div class="cont_bot">
+             <a href="{$vo.pcurl}" target="_blank"><img src="__PUBLIC__/images/mm_19.gif" /></a>
+            </div>
+        </div>
+        </div>
+      <div class="mainhead l">
+      		<span><strong>部落简介</strong></span>
+            <span class="copycondd"><a href="#" target="_blank">报错/反馈</a></span>
+      </div>
+      <div class="scroll l">
+        	
+            <dd>{$vo.description}</dd>
+        </div>
+        <div class="copy l">
+  
+        
+                 	<span class="copycon l"><strong>最新文章</strong></span>
+            <span class="copycon r">看看部落主都在用什么<a href="/bj/" target="_blank">QQ兴趣部落编辑器</a>？</span>
+        </div>
+      	 <div class="Paris l">
+        	<ul>
+            
+                     
+            
+            
+        
+            </ul>
+        </div>
+          <div class="pagewx">  </div>
+        
+        
+         <div class="mainover">
+        	<div class="mainoverone"><h4>同类账号</h4></div>
+            <div class="mainovertwo">
+            	<ul class="mainovertwol">
+            
+
+
+
+<?php
+      $tmp_typeid = $type['id'].getType2($type['id']);
+      $A = M("Archives")->where("typeid in(".$tmp_typeid.") and arcrank=0")->limit("0,14")->field("id,title,litpic,click")->order("rand()")->select();
+        foreach ($A as $a) {
+             echo '<li><a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank" title="'.$a['title'].'"><img src="'.$a['litpic'].'" width="88" height="88"/></a>
+                    	<p><a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank">'.$a['title'].'</a></p>
+                        <div class="xingji"><img src="__PUBLIC__/images/xx5.jpg" /></div>
+                        <p>'.$a['click'].'人关注</p>
+                    </li>';
+          }
+          
+    ?>
+   
+
+	
+					               
+                </ul>
+            </div>
+        </div>
+        <div class="searpic l">
+        <div class="com-title"><span id="cm">网友点评</span></div>
+        
+        	       <div class="sid" id="chisa">            
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="{$vo.id}" data-title="{$vo.title}" data-url="{$vo.url}"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"lanrenmb"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+
+
+        </div>
+    <div> 
+	
+	
+	</div>
+        </div>
+        
+    </div>
+    <div class="mainr r">
+    	 <div class="ficetwo l">
+        	<p>猜您喜欢</p>
+            <ul class="ficeonepic">
+            
+           
+			<?php 
+      $A = M("Archives")->where("arcrank=0 and channel=43")->limit("0,6")->field("id,title,litpic,click")->order("rand()")->select();
+        foreach ($A as $a) {
+             echo '<li><a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank" title="'.$a['title'].'"><img src="'.$a['litpic'].'" /></a>
+                <p><a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank">'.$a['title'].'</a></p></li>';
+          }
+         
+    ?>
+
+            
+			    
+            </ul>
+        </div>
+           
+        <div class="frilink l"> 
+        </div>
+         <div class="hottwo l">
+    	<div class="column_col">
+        	<span class="l">最新收录</span>
+            <span class="r"><a href="{:U("Index/type",array('channel'=>43))}   " target="_blank">更多>></a></span>
+        </div>
+        <div  class="hotthr">
+        	<ul>
+         
+         
+
+<?php 
+      $A = M("Archives")->where("arcrank=0 and channel=43")->limit("0,10")->field("id,title,litpic,click")->order("pubdate desc")->select();
+        foreach ($A as $a) {
+             echo '<li><img src="'.$a['litpic'].'" />
+                <a href="'.U("Index/article",array("id"=>$a['id'])).'" title="'.$a['title'].'">'.$a['title'].'</a></li>';
+          }
+         
+    ?>
+
+
+          
+            </ul>
+        </div>
+    </div>
+    <div class="hottwo l">
+    	<div class="column_col">
+        	<span class="l">微信帮助</span>
+            <span class="r"><a href=" {:U("Index/type",array("typeid"=>90))} " target="_blank">更多>></a></span>
+        </div>
+        <div class="hotfore">
+        	<ul>
+
+
+<?php 
+      $A = M("Archives ")->where("arcrank=0 and typeid=90")->limit("0,8")->field("id,title,litpic,click")->order("pubdate desc")->select();
+        foreach ($A as $a) {
+             echo '<li><a href="'.U("Index/article",array("id"=>$a['id'])).'" target="_blank">'.$a['title'].'</a></li>';
+          }
+         
+    ?>
+ 
+				 
+				               
+            </ul>
+        </div>
+    </div>
+    <div class="hotover">
+    	<script type="text/javascript">
+    /*300*250 创建于 2014-10-28*/
+    var cpro_id = "u1780470";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+    </div>
+
+</div>
+    
+</div>
+
+
+
+
+<include file="foot" />
+
+</body>
+</html>

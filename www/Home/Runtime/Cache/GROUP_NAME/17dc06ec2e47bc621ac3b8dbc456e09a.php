@@ -1,0 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><a href="<?php echo U("Index/article",array("id"=>$vo["id"],"tm"=>"android"));?>"><span><?php echo ($vo["title"]); ?></span><?php if(($vo["litpic"]) != ""): ?><img src="<?php echo ($vo["litpic"]); ?>"><?php endif; ?><span><?php echo ($vo["description"]); ?>...</span><i>心乐水&nbsp;&nbsp;<?php echo (date("Y-m-d",$vo['pubdate'])); ?></i><small><?php echo ($vo["click"]); ?>&nbsp;&nbsp;阅读</small><div class="clear"></div></a></li><?php endforeach; endif; else: echo "" ;endif; ?><div class="current" style="display:none;"><?php
+if( $currentPage >= $totalPages ){ ?>0
+<?php
+}else{ echo ($currentPage); } ?></div>

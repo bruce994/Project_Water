@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="renderer" content="webkit">
+    <title>{$Think.config.SITENAME}</title>
+    <meta name="keywords" content="{$Think.config.keyword}" />
+    <meta name="description" content="{$Think.config.content}" />
+    <meta name="MSSmartTagsPreventParsing" content="True" />
+    <meta http-equiv="MSThemeCompatible" content="Yes" />
+    <base  />
+    <link rel="stylesheet" href="__PUBLIC__/xiaoyun/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/xiaoyun/css/style.css">
+    <link rel="stylesheet" href="__PUBLIC__/xiaoyun/css/font.css">
+    <link rel="stylesheet" href="__PUBLIC__/xiaoyun/css/flickity-docs.css">
+    <link rel="shortcut icon" href="favicon.ico" />
+    <script src="__PUBLIC__/xiaoyun/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+    <script src="__PUBLIC__/xiaoyun/libs/bootstrap/3.3.4/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="__PUBLIC__/xiaoyun/js/jquery.tap.js" type="text/javascript"></script>
+    <script src="__PUBLIC__/xiaoyun/js/flickity-docs.min.js" type="text/javascript"></script>
+    <!--[if lt IE 9]>
+    <script src="__PUBLIC__/xiaoyun/libs/html5shiv/3.7/html5shiv.min.js" type="text/javascript"></script>
+    <script src="__PUBLIC__/xiaoyun/libs/respond.js/1.4.2/respond.js" type="text/javascript"></script>
+  <![endif]-->  </head>
+  <body>
+
+
+  
+<include file="head" />
+
+   
+
+    <div class="wrap">
+
+
+      <div id="carousel-example-generic" class="carousel slide hidden-xs" data-ride="carousel" style="width:85%;margin:0 auto;">
+        <?php 
+        $time = time();
+        $A = M("Myad")->where("starttime <".$time." and endtime>".$time)->limit("0,10")->field("id,adname,image,url")->select();
+        ?>
+
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <?php 
+              $i = 0;
+              foreach ($A as $a) {
+                   $tmp = '';
+                   if($i==0) $tmp = 'class="active"';
+                   echo '<li data-target="#carousel-example-generic" data-slide-to="'.$i.'" '.$tmp.'></li>';
+                   $i++;
+                }
+          ?>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          <?php 
+              $i = 0;
+              foreach ($A as $a) {
+                   $tmp = '';
+                   if($i==0) $tmp = 'active';
+                   if($a['url']){
+                      $tmp2 = '<a href="/Member'.U("Public/adClick",array("id"=>$a['id'])).'" target="_blank"><img src="'.$a['image'].'"></a>';
+                   }else{
+                      $tmp2 = '<img src="'.$a['image'].'">';
+                   }
+                   echo '<div class="item '.$tmp.'" >'.$tmp2.'</div>';
+                   $i++;
+                }
+          ?>
+        </div>
+
+        <a class="left carousel-control" style="height:350px;" href="#carousel-example-generic" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" style="height:350px;" href="#carousel-example-generic" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+
+      </div>
+
+
+
+
+      <div id="carousel-example-generic" class="carousel slide visible-xs" data-ride="carousel">
+        <?php 
+        $time = time();
+        $A = M("Myad")->where("starttime <".$time." and endtime>".$time)->limit("0,10")->field("id,adname,image")->select();
+        ?>
+
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <?php 
+              $i = 0;
+              foreach ($A as $a) {
+                   $tmp = '';
+                   if($i==0) $tmp = 'class="active"';
+                   echo '<li data-target="#carousel-example-generic" data-slide-to="'.$i.'" '.$tmp.'></li>';
+                   $i++;
+                }
+          ?>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          <?php 
+              $i = 0;
+              foreach ($A as $a) {
+                   $tmp = '';
+                   if($i==0) $tmp = 'active';
+                   echo '<div class="item '.$tmp.'"><img src="'.$a['image'].'"></div>';
+                   $i++;
+                }
+          ?>
+        </div>
+
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+
+      </div>
+
+
+
+
+
+
+
+
+      <div class="container container-index">
+        <div class="jumbotron jumbotron-index">
+          <h1 class="title">心乐水让你的生活更美好</h1>
+          <p class="desc">心乐，将“水”与“互联网”相结合，不仅带来了一场饮用水的革命，更开创了互联网另一种发展模式，真正建立“先利他，再利己，多方共赢”的发展模式。2016猴年，必定是心乐水开天辟地的一年，中国互联网也将因此更精彩！
+          </p>
+        </div>
+      </div>
+
+
+      <div class="bn1bg hidden-xs"></div>
+      <div class="visible-xs">
+        <div class="container">
+          <img src="__PUBLIC__/xiaoyun/images/bn1.jpg" alt="" width="1200" height="540" class="img-responsive">
+        </div>
+      </div>
+      <div class="container bnb">
+        <div class="row">
+          <div class="col-md-6 col-sm-7 in_img_01">
+            <img src="__PUBLIC__/xiaoyun/images/bnp1.png" alt="" width="280" height="280" class="center-block img-responsive">
+          </div>
+          <div class="col-md-5 col-sm-5">
+            <h2 class="title">心乐水介绍</h2>
+            <div class="desc w90">心乐水是谁？他不是石头里蹦出来的，却要掀起互联网创业的滔天巨浪！中国首家利用互联网运营模式，让健康水进入千家万户，重新建立中国居民饮水体系，在中国掀起一场“水”与“互联网”的革命，继而发展社区健康产业.</div>
+            <div class="details-link"><a href="{:U("Index/type",array("typeid"=>186))}" class="xyicon">心乐水</a></div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="bn2bg hidden-xs"></div>
+      <div class="visible-xs">
+          <div class="container">
+              <img src="__PUBLIC__/xiaoyun/images/bn2.jpg" alt="" width="1200" height="540" class="img-responsive">
+          </div>
+      </div>
+
+      <div class="container bnb">
+          <div class="row">
+              <div class="col-md-6 col-sm-7">
+                  <img src="__PUBLIC__/xiaoyun/images/bnp2.png" alt="" width="281" height="297" class="center-block img-responsive">
+              </div>
+              <div class="col-md-5 col-sm-5 in_img_01" style="margin-top:50px;">
+                  <h2 class="title">颠覆传统的送水模式</h2>
+                  <div class="desc w90">中国首家利用互联网运营模式，让健康水进入千家万户，重新建立中国居民饮水体系，在中国掀起一场“水”与“互联网”的革命，继而发展社区健康产业。利用互联网，以水为媒，缔造中国第一社区健康平台！。</div>
+                  <div class="details-link"><a href="{:U("Index/type",array("typeid"=>186))}" class="xyicon">产品介绍</a></div>
+              </div>
+          </div>
+      </div>
+
+      <div class="bn3bg hidden-xs"></div>
+      <div class="visible-xs">
+          <div class="container">
+              <img src="__PUBLIC__/xiaoyun/images/bn3.jpg" alt="" width="1200" height="540" class="img-responsive">
+          </div>
+      </div>
+
+      <div class="container bnb hidden-xs">
+          <div class="row">
+              <div class="col-md-5 col-md-offset-2 col-sm-5 col-sm-offset-2">
+                  <h2 class="title">了解你的用户习惯</h2>
+                  <div class="desc">每天，在每个小区、商场内，心乐水在提供送水同时，也在记录宝贵的消费者数据信息，心乐水，定期的数据分析系统，把这些沉睡的数据唤醒， 让商家可以感知用户的用水情况。</div>
+                  <div class="details-link"><a href="{:U("Index/type",array("typeid"=>184))}" class="xyicon">心乐水机柜</a></div>
+              </div>
+              <div class="col-md-5 col-sm-5 in_img_01">
+                  <img src="__PUBLIC__/xiaoyun/images/bnp3.png" alt="" width="280" height="302" class="center-block img-responsive hidden-xs">
+              </div>
+          </div>
+      </div>
+
+
+
+
+      <div class="links hidden-xs">
+        <div class="container pigd">
+          <div id="control-carousel" class="carousel slide" data-ride="carousel">
+            <h3 class="text-center" style="font-family:Source-Han-Light422625">我们的合作伙伴</h3>
+            <div class="carousel-inner" role="listbox">
+              <div class="item active"><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/zgdx.png" alt="中国电信" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/zgtt.png" alt="中国铁通" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/zgyd.png" alt="中国移动" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/xmyc.png" alt="星美影城" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/yctq.png" alt="云川台球" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/hsjs.png" alt="浩沙健身" width="120" height="60"></a></div>
+              <div class="item">
+                <a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/tls.png" alt="田老师" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/hjh.png" alt="黄记煌" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/rc.png" alt="日昌" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/dfjz.png" alt="东方饺子王" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/hclm.png" alt="皇城老妈" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/xcynhg.png" alt="香草云南火锅" width="120" height="60"></a></div>           </div>
+                <a class="left carousel-control" href="#control-carousel" role="button" data-slide="prev" style="height:360px">
+                  <span class="glyphicon an_ll" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#control-carousel" role="button" data-slide="next" style="height:360px">
+                  <span class="glyphicon an_lr" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="links links2 visible-xs">
+            <div class="container">
+              <div id="control-carousel2" class="carousel slide" data-ride="carousel">
+                <h3 class="text-center" style="font-size:18px;font-family:Source-Han-Light422625">我们的合作伙伴</h3>
+                <div class="carousel-inner links2-inner" role="listbox"><div class="item active"><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/zgdx.png" alt="中国电信" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/zgtt.png" alt="中国铁通" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/zgyd.png" alt="中国移动" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/xmyc.png" alt="星美影城" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/yctq.png" alt="云川台球" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/hsjs.png" alt="浩沙健身" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/kfc.png" alt="kfc" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/pizzahut.png" alt="必胜客" width="120" height="60"></a></div>
+                <div class="item">
+                  <a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/coffeebeme.png" alt="咖啡陪你" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/sdkf.png" alt="上岛咖啡" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/wawj.png" alt="我爱我家" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/mzdp.png" alt="眉州东坡" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/zlmlt.png" alt="张亮麻辣烫" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/dytbs.png" alt="大渔铁板烧" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/bgpizza.png" alt="比格披萨" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/xfy.png" alt="小肥羊" width="120" height="60"></a></div>
+                  <div class="item">
+                    <a href="default.htm"  target="_blank"><img src="__PUBLIC__/xiaoyun/images/logo/mlct.png" alt="茉莉餐厅" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/wdm.png" alt=" 味多美" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/tls.png" alt="田老师" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/hjh.png" alt="黄记煌" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/rc.png" alt="日昌" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/dfjz.png" alt="东方饺子王" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/hclm.png" alt="皇城老妈" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/xcynhg.png" alt="香草云南火锅" width="120" height="60"></a></div>
+                    <div class="item">
+                      <a href="default.htm"  target="_blank"><img src="__PUBLIC__/xiaoyun/images/logo/gl.png" alt="港丽" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/hzy.png" alt="宏状元" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/dks.png" alt="德克士" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/ycyz.png" alt="一茶一坐" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/dyl.png" alt="大鸭梨" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/xeq.png" alt="湘鄂情" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/hty.png" alt="黄土谣" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/llsty.png" alt="萝萝酸汤鱼" width="120" height="60"></a></div>
+                      <div class="item">
+                        <a href="default.htm"  target="_blank"><img src="__PUBLIC__/xiaoyun/images/logo/lcyg.png" alt="老城一锅" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/hkl.png" alt="豪客来" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/hns.png" alt="汉拿山" width="120" height="60"></a><a href="javascript:;" style="cursor:default;"><img src="__PUBLIC__/xiaoyun/images/logo/bcgf.png" alt="本草工坊" width="120" height="60"></a></div>            </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+          
+
+                <div class="bn4bg">
+                </div>    
+
+
+               <include file="footer" />
+
+
+
+
+                        <script>
+                        $(document).ready(function(){
+                        /**
+                        * #back-to-top event
+                        */
+                        $(window).scroll(function(){
+                        if ($(this).scrollTop() > 100) {
+                        $('#back-to-top').fadeIn();
+                        } else {
+                        $('#back-to-top').fadeOut();
+                        }
+                        });
+                        $('#back-to-top').on('click', function(e){
+                        e.preventDefault();
+                        $('html, body').animate({scrollTop : 0},1000);
+                        return false;
+                        });
+                        $('#back-to-top2').on('click', function(e){
+                        e.preventDefault();
+                        $('html, body').animate({scrollTop : 0},1000);
+                        return false;
+                        });
+                        $('li.dropdown').mouseover(function() {
+                        $(this).addClass('open');    }).mouseout(function() {        $(this).removeClass('open');    });
+                        });
+                        function nactive(obj) {
+                        var c = obj.getAttribute('class');
+                        if (c == 'active') {
+                        return false;
+                        }
+                        if (c == null) {
+                        var nc = 'active';
+                        } else if (c == undefined) {
+                        var nc = 'active';
+                        } else if (c.indexOf('active') <= 0) {
+                        var nc = c + " active";
+                        }
+                        obj.setAttribute("class", nc);
+                        }
+                        function cactive(obj) {
+                        var c = obj.getAttribute('class');
+                        if (c == null || c == undefined) {
+                        return false;
+                        }
+                        var nc = c.replace(/active/ig, ' ');
+                        obj.setAttribute("class", nc);
+                        }
+                        $('.navbar-toggle').on('click', function(e){
+                        e.preventDefault();
+                        $('body').toggleClass("nav-open");
+                        $('#mask').show();
+                        return false;
+                        });
+                        $('#mask').on('tap', function(e) {
+                        $('body').toggleClass("nav-open");
+                        $('#mask').hide();
+                        return false;
+                        });
+                        $('#mask').bind("touchmove",function(e){
+                        e.preventDefault();
+                        });
+                        $('#ld-d1').on('click', function(e){
+                        e.preventDefault();
+                        $('#ld-d1').hide();
+                        $('#ld-d2').show();
+                        $('#data2').hide();
+                        $('#data1').show();
+                        return false;
+                        });
+                        $('#ld-d2').on('click', function(e){
+                        e.preventDefault();
+                        $('#ld-d2').hide();
+                        $('#ld-d1').show();
+                        $('#data1').hide();
+                        $('#data2').show();
+                        return false;
+                        });
+                        </script>     <div id="discuz_tips" style="display:none;"></div>
+                        
+                      </body>
+                    </html>

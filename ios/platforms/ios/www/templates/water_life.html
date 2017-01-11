@@ -1,0 +1,71 @@
+<link rel="stylesheet" type="text/css" href="Public/android/theme/css/swiper-3.3.1.min.css">
+<script src="Public/android/theme/common/swiper.js"></script>
+<style type="text/css">
+  .swiper-pagination-bullet{border-radius: 0%;height:8px;background:#333;}
+</style>
+
+<ion-view view-title="水生活">
+    <ion-content>
+        <div class="wrapper" style="background:#fff;">
+            <div class="top">
+                <ul>
+                    <li><a href="#/tab/water_life" class="hover">水生活</a></li>
+                    <li><a href="#/tab/water_ring/all">健康圈</a></li>
+                    <li><a href="#/tab/main/{{member.mid}}">我的水</a></li>
+                </ul>
+            </div>
+            <div class="layout">
+                <div class="serch">
+                    <form>
+                        <input type="text" class="text" placeholder="搜索">
+                        <input type="submit" class="s" value="">
+                    </form>
+                </div>
+                <div class="swiper-container swiper1">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" ng-repeat="vo in Ad">
+                            <a href="{{C.site_url}}/Member/index.php?m=Public&a=adClick&id={{vo1.id}}" target="_blank"><img ng-src="{{vo.image}}"></a>
+                        </div>
+                    </div>
+                    <!-- 如果需要分页器 -->
+                    <div class="swiper-pagination"></div>
+                </div>
+                <div class="case">
+                    <h2><span>健康水</span></h2>
+                    <ul>
+                        <li ng-repeat="vo in waterLife"><a href="#/tab/water_life_detail/{{vo.id}}"><span><img ng-src="{{vo.litpic}}"></span><i><cite>{{vo.score}}积分<small>¥ {{vo.score / C.cfg_recharge}}</small></cite><samp>兑换</samp></i></a></li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+                <div class="mall">
+                    <h2><span>积分商城</span><a href="#/tab/score_shop/193">更多&nbsp;&gt;</a></h2>
+                    <ul>
+                        <li ng-repeat="vo in scoreShop">
+                            <a href="#/tab/score_shop_detail/{{vo.id}}"><img ng-src="{{vo.litpic}}" style="max-height: 150px;"><span>{{vo.title}}</span><big>{{vo.score}}积分<small>¥ {{vo.score / C.cfg_recharge}}</small></big><i>已{{vo.order}}售件</i>
+                                <cite>{{vo.comm}}条评价</cite>
+                            </a>
+                        </li>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- ./wrapper -->
+    </ion-content>
+</ion-view>
+
+
+<script>  
+$(function() {
+var mySwiper1 = new Swiper ('.swiper1', {
+    loop: true,
+    pagination: '.swiper-pagination'
+  })
+});
+</script>
+
+
+
+
+
+

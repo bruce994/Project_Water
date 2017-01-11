@@ -1,0 +1,78 @@
+<link rel="stylesheet" type="text/css" href="Public/android/theme/css/swiper-3.3.1.min.css">
+<script src="Public/android/theme/common/swiper.js"></script>
+<style type="text/css">
+  .swiper-pagination-bullet{border-radius: 0%;height:8px;background:#333;}
+</style>
+
+<ion-view view-title="水生活">
+    <ion-content>
+        <div class="wrapper" style="background:#fff;">
+            <div class="top">
+            <ul>
+                <li><a href="#/tab/water_life" class="ryy_return">&lt;&nbsp;返回</a></li>
+                <li><a href="#/tab/score_shop/193">积分商城</a></li>
+                <li><a href="javascript:void(0);">...</a></li>
+            </ul>
+            </div>
+            <div class="layout">
+                <div class="serch">
+                    <form>
+                        <input type="text" class="text" placeholder="搜索">
+                        <input type="submit" class="s" value="">
+                    </form>
+                </div>
+                
+
+<div class="content">
+    <div class="left-bar">
+        <ul>
+            <li ng-repeat="vo in list"><a ng-class="vo.id == typeid ?'hover':'' "   href="#/tab/score_shop/{{vo.id}}" title="{{vo.typename}}">{{vo.typename}}</a></li>
+            <!-- /.循环分类 -->
+        </ul>
+    </div>
+    <div class="right-bar">
+
+
+        <div ng-repeat="vo in list2">
+        <h2>{{vo.typename}}</h2>
+        <ul>
+            <li ng-repeat="vo2 in vo.dd">
+                <a href="#/tab/score_shop_detail/{{vo2.id}}"><img ng-src="{{vo2.litpic}}"><span>{{vo2.title}}</span></a>
+            </li>
+        </ul>
+        <div class="clear"></div>
+        </div>
+
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+
+
+
+
+
+
+               
+            </div>
+        </div>
+        <!-- ./wrapper -->
+    </ion-content>
+</ion-view>
+
+
+<script>  
+$(function() {
+var mySwiper1 = new Swiper ('.swiper1', {
+    loop: true,
+    pagination: '.swiper-pagination'
+  })
+});
+</script>
+
+
+
+
+
+

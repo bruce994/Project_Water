@@ -1,0 +1,21 @@
+
+<?php
+$member = M("Member")->where("mid=".$_SESSION["member"]['mid'])->find();
+?>
+
+
+<!-- jQuery 2.1.4 -->
+<script src="__PUBLIC__/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/android/theme/css/style-ryynet.css">
+
+
+<div class="top">
+    <ul style="margin:0px;">
+        <li style="width:30%"><a href="javascript:void(0);" class="ryy_return">&lt;&nbsp;返回</a></li>
+        <li style="width:70%"><a href="{:U("Main/index")}">我的信息</a></li>
+    </ul>
+</div>
+
+
+
+

@@ -1,0 +1,151 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8">
+<title>{$type.typename}-{:C("site_name")}</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<metaname="screen-orientation"content="portrait">
+<metaname="x5-orientation"content="portrait">
+<link rel="stylesheet" type="text/css" href="/Home/Tpl/{:$_GET['tm']}/theme/css/style.css">
+<link rel="stylesheet" type="text/css" href="/Home/Tpl/{:$_GET['tm']}/theme/css/swiper-3.3.1.min.css">
+<script type="text/javascript" src="/Home/Tpl/{:$_GET['tm']}/theme/common/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="/Home/Tpl/{:$_GET['tm']}/theme/common/swiper.js"></script>
+</head>
+
+<body>
+
+
+<div class="top">
+
+<ul>
+<li><a href="{:U("Index/type",array("typeid"=>185,"tm"=>"android"))}" class="hover">水生活</a></li>
+<li><a href="{:U("Index/andType",array("tm"=>"android"))}" >健康圈</a></li>
+<li><a href="/andMember/">我的水</a></li>
+</ul>
+
+</div>
+
+<div class="layout">
+
+<div class="serch">
+
+<form>
+
+<input type="text" class="text" placeholder="搜索"><input type="submit" class="s" value="">
+
+</form>
+
+</div>
+
+
+
+<div class="swiper-container swiper1">
+
+<div class="swiper-wrapper">
+
+   <?php 
+              $time = time();
+              $A = M("Myad")->where("starttime <".$time." and endtime>".$time)->limit("0,100")->field("id,adname,image,url")->select();
+
+              $i = 0;
+              foreach ($A as $a) {
+                   $tmp = '';
+                   if($a['url']){
+                      $tmp2 = '<div class="swiper-slide"><a href="/Member'.U("Public/adClick",array("id"=>$a['id'])).'" target="_blank"><img src="'.$a['image'].'"></a></div>';
+                   }else{
+                      $tmp2 = '<div class="swiper-slide"><img src="'.$a['image'].'"></div>';
+                   }
+                   echo $tmp2;
+                   $i++;
+                }
+          ?>
+</div>
+
+<!-- 如果需要分页器 -->
+<div class="swiper-pagination"></div>
+
+</div>
+
+
+
+
+<div class="case">
+<h2><span>健康水</span></h2>
+<ul>
+<?php
+$aa = "192";
+$type_all = M("Arctype")->where("id in(".$aa.")")->field("id,typename")->select();
+foreach ($type_all as $ty) {
+?>
+  <?php
+  $productList = M("Archives")->where("typeid=".$ty['id'])->limit("0,9")->select();
+  foreach ($productList as $vo) {
+      $product = M("addon".$vo['channel'])->where("aid=".$vo['id'])->find();
+      $comm = M("Feedback")->where("aid=".$vo['id']. " and ischeck=1")->count();
+      $order = M("Shops_orders")->where("pid=".$vo['id'])->count();
+  ?>
+    <li><a href="{:U("Index/article",array("id"=>$vo["id"],"tm"=>"android"))}"><span><img src="{$vo.litpic}"></span><i><cite>{:$product['score']}积分<small>¥ <?php echo $product['score']/C("cfg_recharge");?></small></cite><samp>兑换</samp></i></a></li>
+  <?php 
+  }
+  ?>
+<?php
+}
+?>
+
+
+
+
+</ul>
+
+<div class="clear"></div>
+
+</div>
+
+<div class="mall">
+
+<h2><span>积分商城</span><a href="{:U("Index/type",array("typeid"=>193,"tm"=>"android"))}">更多&nbsp;&gt;</a></h2>
+
+<ul>
+
+<?php
+$aa = "193".getType2("193");
+$type_all = M("Arctype")->where("id in(".$aa.")")->field("id,typename")->select();
+foreach ($type_all as $ty) {
+?>
+  <?php
+  $productList = M("Archives")->where("typeid=".$ty['id'])->limit("0,9")->select();
+  foreach ($productList as $vo) {
+      $product = M("addon".$vo['channel'])->where("aid=".$vo['id'])->find();
+      $comm = M("Feedback")->where("aid=".$vo['id']. " and ischeck=1")->count();
+      $order = M("Shops_orders")->where("pid=".$vo['id'])->count();
+  ?>
+    <li><a href="{:U("Index/article",array("id"=>$vo["id"],"tm"=>"android"))}"><img src="{$vo.litpic}" style="max-height: 150px;"><span>{$vo.title}</span><big><?php echo $product['score'];?>积分<small>¥ <?php echo $product['score']/C("cfg_recharge");?></small></big><i>已售{:$order}件</i><cite>{:$comm}条评价</cite></a></li>
+  <?php 
+  }
+  ?>
+<?php
+}
+?>
+
+
+<div class="clear"></div>
+</ul>
+
+</div>
+
+</div>
+
+<script>        
+  var mySwiper1 = new Swiper ('.swiper1', {
+    loop: true,
+    pagination: '.swiper-pagination'
+  })
+</script>
+
+<include file="android/cordova" />
+
+</body>
+
+
+
+
+</html>

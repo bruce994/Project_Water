@@ -1,0 +1,47 @@
+<link rel="stylesheet" type="text/css" href="Public/android/theme/css/swiper-3.3.1.min.css">
+<script src="Public/android/theme/common/swiper.js"></script>
+<style type="text/css">
+  .swiper-pagination-bullet{border-radius: 0%;height:8px;background:#333;}
+</style>
+
+<ion-view view-title="详细">
+    <ion-content>
+        <div class="wrapper" style="background:#fff;">
+
+
+
+        <div class="top">
+            <ul>
+                <li><a href="#/tab/water_ring/{{vo.typeid}}" class="ryy_return">&lt;&nbsp;返回</a></li>
+                <li><a href="#/tab/water_ring/{{vo.typeid}}">{{type.typename}}</a></li>
+                <li><a href="javascript:void(0);">...</a></li>
+            </ul>
+        </div>
+        <div class="layout">
+            <div class="detail-title">
+                <h2>{{vo.title}}</h2><span>{{vo.pubdate * 1000 | date:'yyyy-MM-dd'}}<i>心水乐</i></span></div>
+            <div class="editor" ng-bind-html="vo.body">
+            </div>
+            <div class="read"><span>阅读 {{vo.click}}</span><img src="Public/android/theme/bg/bg8.gif" style="cursor: pointer;" onclick=""><a href="javascript:void(0);" id="goodPost">{{vo.goodpost}}</a></div>
+        </div>
+
+        </div>
+        <!-- ./wrapper -->
+    </ion-content>
+</ion-view>
+
+
+<script>  
+$(function() {
+var mySwiper1 = new Swiper ('.swiper1', {
+    loop: true,
+    pagination: '.swiper-pagination'
+  })
+});
+</script>
+
+
+
+
+
+

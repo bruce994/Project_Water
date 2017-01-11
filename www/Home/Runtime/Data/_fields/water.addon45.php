@@ -1,0 +1,1 @@
+<?php	return array ( 0 => 'aid', 1 => 'typeid', 2 => 'redirecturl', 3 => 'templet', 4 => 'userip', 5 => 'score', 6 => 'body', '_autoinc' => false, '_pk' => 'aid', '_type' => array ( 'aid' => 'int(11)', 'typeid' => 'int(11)', 'redirecturl' => 'varchar(255)', 'templet' => 'varchar(30)', 'userip' => 'char(15)', 'score' => 'int(11)', 'body' => 'mediumtext', ), );?>

@@ -1,0 +1,95 @@
+
+                <footer>
+                  <div class="container">
+                    <div class="row ft-top">
+                      <div class="col-md-12 col-sm-12">
+                        <h4 class="xyicon xyi-about">about us</h4>
+                        <ul>
+                          <li style="float:left;margin:5px"><a href="" style="text-decoration:none;">关于我们</a></li>
+                          <li style="float:left;margin:5px"><a href="{:U("Index/type",array("typeid"=>184))}" style="text-decoration:none;">心乐水动态</a></li>
+                        </ul>
+                      </div>
+                      <div class="col-md-12 col-sm-12" style="padding-top:20px;">
+                        <h4 class="xyicon xyi-link">友情链接</h4>
+                        <ul>
+                          <?php
+                            $link = M("Flink")->where("ischeck=1")->order("sortrank")->select();
+                            foreach ($link as $value) {
+                          ?>
+                          <li style="float:left;margin:5px"><a href="{:$value['url']}" target="_blank" style="text-decoration:none;">{:$value['webname']}</a></li>
+                          <?php
+                            }
+                          ?>
+
+
+                        </ul>
+                      </div>
+                      <div class="col-md-12 text-center col-sm-12 hidden-xs">
+                        <div id="back-to-top">
+                          <a href="#"><div class="ano_top"><img src="__PUBLIC__/xiaoyun/images/ano.png" width="35" height="35"></div></a>
+                        </div>
+                      </div>
+                      </div><!-- .ft-top end -->
+                      <div class="row xsLogin">
+                        <table width="200" border="0" cellspacing="0" cellpadding="0" style=" width:100%;">
+                          <tr>
+                            <td> <a href="../account.xiaoyun.com/login" style="text-decoration:none;"><img src="__PUBLIC__/xiaoyun/images/shdl.png" width="135" height="70" alt="" class="img-responsive center-block"></a></td>
+                           
+                          </tr>
+                        </table>
+                        
+                      </div>
+                      <div class="row ft-btm">
+                        <div class="col-md-6 col-sm-8 hidden-xs">
+                          <p>{:C("copyright")}</p>
+                          <p>
+                            <a href="http://www.miitbeian.gov.cn/default.htm" style="text-decoration:none;"  target="_blank" class="beian">{:C("site_beian")}</a>
+
+                            联系电话：<a href="tel_3A{:C("site_tel")}" style="text-decoration:none;"  target="_blank" class="beian">{:C("site_tel")}</a>
+                          </p></div>
+                            
+                            <div class="col-md-2 col-md-offset-4 text-right col-sm-3 col-sm-offset-1 hidden-xs">
+                              <a href="javascript:void(0);" class="xyi-wechat" data-toggle="modal" data-target=".wechat-modal-sm">微信</a>
+                              <a href="http://wpa.qq.com/msgrd?v=3&uin={:C("site_email")}&site=qq&menu=yes" target="_blank" class="xyi-qq">QQ</a>
+                              <a href="{:C("site_weibo")}" target="_blank" class="xyi-weibo">微博</a>
+                              <a href="mailto:{:C("site_email")}" class="xyi-email">邮箱</a>
+                            </div>
+                            </div><!-- .ft-btm end -->
+                          </div>
+                          <div class="text-center">
+                            <div id="back-to-top2" class="visible-xs">
+                              <a href="#"><img src="__PUBLIC__/xiaoyun/images/backtop.png" alt="" width="50" height="50"></a>
+                            </div>
+                          </div>
+                          <div class="modal fade wechat-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                            <div class="modal-dialog modal-sm">
+                              <div class="modal-content">
+                                <img src="{:C("site_qr")}" width="344" height="344"  class="img-responsive">
+                              </div>
+                            </div>
+                          </div>
+                        </footer>
+
+
+
+<script src="__PUBLIC__/static/bootbox.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  function alertMsg(msg){
+      bootbox.dialog({
+              message:  msg,
+              title: "提示",
+              buttons: {
+                success: {
+                  label: "关闭",
+                  className: "btn-default",
+                },
+              }
+            });
+  }
+</script>
+
+
+
+
+
+

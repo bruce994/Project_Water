@@ -1,0 +1,250 @@
+      <!-- jQuery 2.1.4 -->
+      <script src="__PUBLIC__/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+
+      <header class="main-header">
+        <!-- Logo -->
+        <a href="__APP__" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><b>Wat</b>er</span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b><?php echo C("SITENAME"); ?>管理系统</b></span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+
+                <li class="dropdown messages-menu"><a href="/" target="_blank">
+                  进入网站主页</a></li>
+          
+              <!-- User Account: style can be found in dropdown.less -->
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <img src="<?php echo empty($_SESSION["admin"]['face'])?"/Public/images/face.png":$_SESSION["admin"]['face'];?>" class="user-image" alt="User Image">
+                  <span class="hidden-xs"><?php echo $_SESSION["admin"]['userid'];?></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+
+
+
+                    <img src="<?php echo empty($_SESSION["admin"]['face'])?"/Public/images/face.png":$_SESSION["admin"]['face'];?>" class="img-circle" alt="User Image">
+
+
+                    <p>
+                      最后登录时间：<?php echo date("m-d H:i",$_SESSION["admin"]['logintime']);?>
+                      <small>IP:<?php echo $_SESSION["admin"]['loginip'];?></small>
+                    </p>
+                  </li>
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="{:U("Admin/edit",array("id"=>$_SESSION["admin"]['id']))}" class="btn btn-default btn-flat">修改</a>
+                    </div>
+                    <div class="pull-right">
+                      <a href="{:U("Public/logout")}" class="btn btn-default btn-flat">退出</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <!-- Control Sidebar Toggle Button -->
+              <li>
+                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar user panel -->
+          <div class="user-panel">
+            <div class="pull-left image">
+              <img src="<?php echo empty($_SESSION["admin"]['face'])?"/Public/images/face.png":$_SESSION["admin"]['face'];?>" class="img-circle" alt="User Image" onclick="javascript:location.href='__APP__';" style="cursor: pointer;" >
+            </div>
+            <div class="pull-left info">
+              <p><?php echo $_SESSION["admin"]['userid'];?></p>
+              <a href="#"><i class="fa fa-circle text-success"></i>在线</a>
+            </div>
+          </div>
+          <!-- search form -->
+          <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+              <input type="text" name="q" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </form>
+          <!-- /.search form -->
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+            <li class="header">功能管理</li>
+    
+
+          <?php if(strstr($_SESSION["admin"]['role'], 'sys_seting') || strstr($_SESSION["admin"]['role'], 'sys_admin') || strstr($_SESSION["admin"]['role'], 'sys_pay') || strstr($_SESSION["admin"]['role'], 'sys_link') || strstr($_SESSION["admin"]['role'], 'sys_cache') || strstr($_SESSION["admin"]['role'], 'sys_enum')  ){ ?>
+
+            <li class="treeview <?php if($_GET['ss'] == 1){echo "active";} ?>">
+              <a href="#">
+                <i class="fa  fa-cog"></i><span>系统管理</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                
+                <?php if(strstr($_SESSION["admin"]['role'], 'sys_seting')){ ?>
+                <li><a href="{:U("System/index",array("ss"=>1))}"><i class="fa fa-cog"></i>系统设置</a></li>
+                <?php } ?>
+
+                <?php if(strstr($_SESSION["admin"]['role'], 'sys_admin')){ ?>
+                <li><a href="{:U("Admin/index",array("ss"=>1))}"><i class="fa fa-user"></i>管理员</a></li>  
+                <?php } ?>
+
+                <?php if(strstr($_SESSION["admin"]['role'], 'sys_pay')){ ?>
+                <li><a href="{:U("System/payment",array("ss"=>1))}"><i class="fa fa-credit-card"></i>支付接口</a></li>  
+                <?php } ?>
+
+                <?php if(strstr($_SESSION["admin"]['role'], 'sys_link')){ ?>
+                <li><a href="{:U("System/link",array("ss"=>1))}"><i class="fa fa-link"></i>友情链接</a></li>  
+                <?php } ?>
+
+                <?php if(strstr($_SESSION["admin"]['role'], 'sys_cache')){ ?>
+                <li><a href="{:U("System/deleteCache",array("ss"=>1))}"><i class="fa fa-refresh"></i>更新缓存</a></li>
+                <?php } ?>
+
+                <?php if(strstr($_SESSION["admin"]['role'], 'sys_enum')){ ?>
+                <li><a href="{:U("System/enum",array("ss"=>1))}"><i class="fa fa-circle-o"></i>数据字典管理</a></li>
+                <?php } ?>
+
+              </ul>
+            </li>
+
+          <?php } ?>
+
+
+          <?php if(strstr($_SESSION["admin"]['role'], 'member_seting') || strstr($_SESSION["admin"]['role'], 'member_setScore') || strstr($_SESSION["admin"]['role'], 'member_notice') || strstr($_SESSION["admin"]['role'], 'member_score') || strstr($_SESSION["admin"]['role'], 'member_recharge') || strstr($_SESSION["admin"]['role'], 'member_order') ){ ?>
+
+           <li class="treeview <?php if($_GET['ss'] == 2){echo "active";} ?>">
+            <a href="#">
+              <i class="fa  fa-user"></i><span>会员管理</span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <?php if(strstr($_SESSION["admin"]['role'], 'member_seting')){ ?>
+                <li><a href="{:U("Member/index",array("ss"=>2))}"><i class="fa fa-user-plus"></i>会员</a></li> 
+                <?php } ?>
+
+                <?php if(strstr($_SESSION["admin"]['role'], 'member_setScore')){ ?>                               
+                <li><a href="{:U("Member/setScore",array("ss"=>2))}"><i class="fa fa-cc"></i>积分设置</a></li>  
+                <?php } ?>
+
+                <?php if(strstr($_SESSION["admin"]['role'], 'member_notice')){ ?>                              
+                <li><a href="{:U("Member/notice",array("ss"=>2))}"><i class="fa fa-bell-o"></i>会员公告</a></li> 
+                <?php } ?>
+
+                <?php if(strstr($_SESSION["admin"]['role'], 'member_score')){ ?>                               
+                <li><a href="{:U("Member/log",array("ss"=>2))}"><i class="fa  fa-ticket"></i>会员积分</a></li>  
+                <?php } ?>
+
+                <?php if(strstr($_SESSION["admin"]['role'], 'member_recharge')){ ?>                              
+                <li><a href="{:U("Member/pay",array("ss"=>2))}"><i class="fa fa-circle-o"></i>会员充值</a></li>   
+                <?php } ?>
+
+                <?php if(strstr($_SESSION["admin"]['role'], 'member_order')){ ?>                             
+                <li><a href="{:U("Shop/index",array("ss"=>2))}"><i class="fa fa-reorder"></i>会员订单</a></li>
+                <?php } ?>
+            </ul>
+          </li>
+        <?php } ?>
+           
+
+
+
+
+            <li class="treeview <?php if($_GET['ss'] == 3){echo "active";} ?>">
+              <a href="#">
+                <i class="fa fa-folder"></i><span>栏目管理</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{:U("Type/index",array("ss"=>3))}"><i class="fa fa-circle-o"></i>栏目管理</a></li>
+              </ul>
+            </li>
+
+
+
+
+          <?php if(strstr($_SESSION["admin"]['role'], 'ad_seting')  ){ ?>
+            <li class="treeview <?php if($_GET['ss'] == 6){echo "active";} ?>">
+              <a href="#">
+                <i class="fa fa-adn"></i><span>广告管理</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <?php if(strstr($_SESSION["admin"]['role'], 'ad_seting')){ ?>                             
+                <li><a href="{:U("Admin/ad",array("ss"=>6))}"><i class="fa fa-circle-o"></i>广告管理</a></li>
+                <?php } ?>
+              </ul>
+            </li>
+        <?php } ?>
+
+
+            <li class="treeview <?php if($_GET['ss'] == 4){echo "active";} ?>">
+              <a href="#">
+                <i class="fa fa-table"></i><span>内容管理</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <?php
+                 $tmp = M("Channeltype")->field("id,typename")->select(); 
+                 foreach ($tmp as $value) {
+                ?>
+                  <li><a href="{:U("Type/article",array("channel"=>$value['id'],"ss"=>4))}"><i class="fa fa-circle-o"></i><?php echo $value['typename'];?></a></li>
+                <?php
+                  } 
+                ?>
+
+                <?php if(strstr($_SESSION["admin"]['role'], 'feedback')){ ?>                             
+                <li><a href="{:U("Type/feedback",array("ss"=>4))}"><i class="fa fa-comments"></i>评论管理</a></li>
+                <?php } ?>
+
+              </ul>
+            </li>
+
+
+
+          <?php if(strstr($_SESSION["admin"]['role'], 'model_seting') || strstr($_SESSION["admin"]['role'], 'model_field') ){ ?>
+            <li class="treeview <?php if($_GET['ss'] == 5){echo "active";} ?>">
+              <a href="#">
+                <i class="fa fa-cubes"></i><span>频道模型</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <?php if(strstr($_SESSION["admin"]['role'], 'model_seting')){ ?>                             
+                <li><a href="{:U("Channel/index",array("ss"=>5))}"><i class="fa  fa-cube"></i>内容模型管理</a></li>
+                <?php } ?>
+
+                <?php if(strstr($_SESSION["admin"]['role'], 'model_field')){ ?>                             
+                <li><a href="{:U("Channel/fmanage",array("ss"=>5))}"><i class="fa  fa-cube"></i>字段管理</a></li>
+                <?php } ?>
+
+              </ul>
+            </li>
+          <?php } ?>
+
+
+          </ul>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+      

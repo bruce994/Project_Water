@@ -1,0 +1,61 @@
+<link rel="stylesheet" type="text/css" href="Public/android/theme/css/swiper-3.3.1.min.css">
+<script src="Public/android/theme/common/swiper.js"></script>
+<style type="text/css">
+  .swiper-pagination-bullet{border-radius: 0%;height:8px;background:#333;}
+</style>
+
+<ion-view view-title="健康圈">
+    <ion-content>
+        <div class="wrapper" style="background:#fff;">
+            <div class="top">
+                <ul>
+                    <li><a href="#/tab/water_life" >水生活</a></li>
+                    <li><a href="#/tab/water_ring/all" class="hover">健康圈</a></li>
+                    <li><a href="#/tab/main/{{member.mid}}">我的水</a></li>
+                </ul>
+            </div>
+            <div class="layout">
+                <div class="serch">
+                    <form>
+                        <input type="text" class="text" ng-model="$parent.keyword" placeholder="搜索">
+                        <input type="button" class="s" ng-click="search();">
+                    </form>
+                </div>                
+                <div class="swiper-container swiper1">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" ng-repeat="vo in Ad">
+                            <a href="{{C.site_url}}/Member/index.php?m=Public&a=adClick&id={{vo1.id}}" target="_blank"><img ng-src="{{vo.image}}"></a>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="jk">
+                <div class="current" style="display:none;">1</div>
+                <ul id="page" ng-repeat="vo in list">
+                    <li><a href="#/tab/water_ring_detail/{{vo.id}}"><span>{{vo.title}}</span><img ng-src="{{vo.litpic}}"><span>{{vo.description}}...</span><i>心乐水&nbsp;&nbsp;{{vo.pubdate * 1000 | date:'yyyy-MM-dd HH:mm:ss' }}</i><small>{{vo.click}}&nbsp;&nbsp;阅读</small><div class="clear"></div></a></li>
+                </ul>
+               <ion-infinite-scroll immediate-check="true" distance="5%" on-infinite="loadMoreData()" ng-if="!moredata" icon="ion-loading-c" ></ion-infinite-scroll>                                   
+                <div style="height:10px;"></div>
+            </div>
+
+            </div>
+        </div>
+        <!-- ./wrapper -->
+    </ion-content>
+</ion-view>
+
+
+<script>  
+$(function() {
+var mySwiper1 = new Swiper ('.swiper1', {
+    loop: true,
+    pagination: '.swiper-pagination'
+  })
+});
+</script>
+
+
+
+
+
+

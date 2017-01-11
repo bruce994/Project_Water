@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{$Think.config.SITENAME}</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="__PUBLIC__/misc/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="__PUBLIC__/misc/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="__PUBLIC__/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="__PUBLIC__/dist/css/skins/_all-skins.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="__PUBLIC__/misc/html5shiv.min.js"></script>
+        <script src="__PUBLIC__/misc/respond.min.js"></script>
+    <![endif]-->
+    <style> 
+      .color-palette {
+        height: 35px;
+        line-height: 35px;
+        text-align: center;
+      }
+      .color-palette-set {
+        margin-bottom: 15px;
+      }
+      .color-palette span {
+        display: none;
+        font-size: 12px;
+      }
+      .color-palette:hover span {
+        display: block;
+      }
+      .color-palette-box h4 {
+        position: absolute;
+        top: 100%;
+        left: 25px;
+        margin-top: -40px;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 12px;
+        display: block;
+        z-index: 7;
+      }
+
+      table { width: 100%; }
+      td, th {text-align: left; white-space: nowrap;}
+      td.numeric, th.numeric { text-align: right; }
+
+
+    </style>
+  </head>
+  <body class="hold-transition skin-green-light sidebar-mini">
+    <div class="wrapper">
+
+      <include file="Public:head" />
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            订单
+            <small>管理</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="__APP__"><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li><a href="#">订单</a></li>
+          </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="box">
+
+                <form action="{:U("Shop/index",array("ss"=>4))}" method="get">
+                <div class="box-header" style="padding:15px;">
+                    
+                     <div class="box-tools">
+                        <div class="input-group" style="width: 150px;">
+                          <input type="text" name="q" class="form-control input-sm pull-right" placeholder="<?php echo empty($_GET['q'])?"按订单号搜索":$_GET['q'];?>">
+                          <div class="input-group-btn">
+                            <button type="submit" class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                          </div>
+                        </div>
+                      </div>
+                </div><!-- /.box-header -->
+                </form>
+
+                <div class="box-body">
+                <section id="no-more-tables">
+                  <table id="example2" class="table-bordered table-striped table-condensed cf">
+                    <thead class="cf">
+                      <tr>
+                        <th>订单号</th>
+                        <th>生成日期</th>
+                        <th>兑换积分</th>
+                        <th>兑换水量/毫升</th>
+                        <th>取水方式</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <volist id="vo" name="list">
+                          <tr>
+                            
+                            <td data-title="订单号">{$vo.oid}</td>
+                             <td data-title="生成日期">
+                                {$vo['stime']|date="Y-m-d H:i",###}</td>
+                             <td data-title="兑换积分">
+                                {$vo['score']}</td>
+                             <td data-title="兑换水量/毫升">
+                                <?php echo $vo['score']*C("cfg_milliliter");?>
+                                </td>
+                              <td data-title="取水方式">
+                                  <eq name="vo.state" value="1">
+                                   <eq name="vo.paytype" value="1">
+                                      <span class="badge bg-light-blue"><i class="fa fa-fw fa-qrcode"></i>二维码</span>
+                                   </eq>
+                                   <eq name="vo.paytype" value="2">
+                                      <span class="badge bg-green"><i class="fa fa-fw fa-credit-card"></i>刷卡</span>
+                                   </eq>
+                                 </eq>
+                                 &nbsp;
+                              </td>                              
+                              <td data-title="状态">
+
+                                  <eq name="vo.state" value="1">
+                                    <span class="badge bg-light-blue">已取水</span>
+                                 </eq>
+                                 <eq name="vo.state" value="0">
+                                    <span class="badge bg-red">未取水</span>
+                                 </eq>
+
+                              </td>
+                              
+                              <td data-title="操作">
+
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#myModal{$vo.oid}"><i class="fa fa-fw fa-qrcode"></i></a> 
+
+                                 <eq name="vo.state" value="0">                            
+                                 | <a href="javascript:void(0);" data-toggle="modal" data-target="#lc_confirm" onclick="msgBox('{:U("Shop/delete",array("id"=>$vo['oid'],"ajax"=>"1"))}','GET','json','','{:U("Shop/index",array("typeid"=>192))}',true,'确定删除？');"><i class="fa fa-fw fa-remove"></i></a>
+                                 </eq>
+
+                                  <?php  if($vo['state']!="0" && $vo['receipt']=="0"){ ?>                            
+                                   | <a href="javascript:void(0);" data-toggle="modal" data-target="#lc_confirm" onclick="msgBox('{:U("Shop/receipt",array("id"=>$vo['oid'],"ajax"=>"1"))}','GET','json','','{:U("Shop/index",array("typeid"=>192))}',true,'确定取水？');"><i class="fa fa-fw fa-truck"></i></a>
+                                   <?php } ?>                          
+
+
+                              </td>
+                          </tr>
+
+                          <?php
+                          $url =  C('site_url').U('Public/qrcodeWater', array('oid' => $vo['oid']));
+                          $url = str_replace("andMember", "Member", $url);
+                          ?>
+                          <!--dialog-->
+                          <div id="myModal{$vo.oid}" class="modal fade" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-sm" role="document">
+                              <div class="modal-content">
+                                <div class="modal-body" style="text-align:center;">
+                                  <img src="/misc/phpqrcode/index.php?url=<?php echo $url;?>" />
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+
+                        </volist>                    
+                    </tbody>
+      
+                  </table>
+                </section>
+                </div><!-- /.box-body -->
+
+                <div class="row container-fluid">
+                  <div class="col-sm-5"><div class="dataTables_info">{$totalCount} 条记录 {$currentPage}/{$totalPages} 页</div></div>
+                  <div class="col-sm-6">
+                    <div class="dataTables_paginate paging_simple_numbers">
+                    <ul class="pagination">
+                      {$page}
+                   </ul>
+                  </div>
+                  </div>
+                </div>
+
+              </div><!-- /.box -->
+
+
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+
+    <include file="Public:footer" />
+
+     
+    </div><!-- ./wrapper -->
+
+
+<include file="Public:cordova" />
+
+
+  </body>
+</html>

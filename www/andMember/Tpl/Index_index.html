@@ -1,0 +1,80 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8">
+<title>用户登录_{$Think.config.SITENAME}</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<metaname="screen-orientation"content="portrait">
+<metaname="x5-orientation"content="portrait">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/android/theme/css/style.css">
+<script type="text/javascript" src="__PUBLIC__/android/theme/common/jquery-1.8.3.js"></script>
+
+<script>
+$( document ).ready(function() {
+    var guide  = window.localStorage.getItem("guide");
+    if(guide === null){
+      location.href = "{:U("Index/guide")}";  
+    }
+});
+
+</script>
+
+</head>
+
+<body style="background-color:#eeeeee">
+
+<div class="top">
+
+<ul>
+<li><a href="javascript:void(0);" class="ryy_return">&lt;&nbsp;返回</a></li>
+<li><a href="{:U("Index/index")}">登录账号</a></li>
+<li><a href="#">...</a></li>
+</ul>
+
+</div>
+
+<div class="center">
+
+<div class="reget">
+
+<form action="{:U("Public/checkLogin")}" method="post">
+
+<div>
+
+<p><span>登录账号</span><i><input type="text" name="username" id="mobile" class="phone-blur" placeholder="请输入手机号码或昵称"></i></p>
+<p><span>密码</span><i><input type="password" name="password" placeholder="请输入您的密码" class="password"></i></p>
+
+</div>
+
+<input type="submit" id="login"  class="phone-submit" value="登录">
+
+
+<a href="{:U("Public/reg")}"><input type="button" class="phone-submit" value="注册" style="margin-top:10px;"></a>
+
+<img src="__PUBLIC__/android/theme/bg/png5.png">
+
+</form>
+
+<script>
+$(function () {
+  $("#login").click(function () {
+    if ($(".phone-blur").val() == "") {
+      alert("手机号不能为空");
+      $(".phone-blur").focus();
+      return false;
+    }
+    return true;    
+  })
+
+})
+</script>
+
+</div>
+
+<div class="clear"></div>
+
+</div>
+
+<include file="Public:cordova" />
+</body>
+
+</html>

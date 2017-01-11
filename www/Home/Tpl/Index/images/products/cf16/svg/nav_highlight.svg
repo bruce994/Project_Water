@@ -1,0 +1,16 @@
+<svg id="组_7" data-name="组 7" xmlns="http://www.w3.org/2000/svg" width="189" height="45" viewBox="0 0 189 45">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #0056b7;
+      }
+    </style>
+  </defs>
+  <path id="矩形_8" data-name="矩形 8" class="cls-1" d="M681.993,0h124L761,45H637Z" transform="translate(-627)"/>
+  <path id="矩形_8_副本_2" data-name="矩形 8 副本 2" class="cls-2" d="M642.993,29h5L632,45h-5Z" transform="translate(-627)"/>
+  <path id="矩形_8_副本_3" data-name="矩形 8 副本 3" class="cls-2" d="M810.993,0h5L791,25h-5Z" transform="translate(-627)"/>
+</svg>

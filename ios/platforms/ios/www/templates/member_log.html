@@ -1,0 +1,181 @@
+
+
+<link rel="stylesheet" type="text/css" href="Public/android/theme/css/style-ryynet.css">
+
+
+
+ <!-- Bootstrap 3.3.5 -->
+<link rel="stylesheet" href="Public/bootstrap/css/bootstrap.min.css">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="Public/misc/font-awesome.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet" href="Public/misc/ionicons.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="Public/dist/css/AdminLTE.min.css">
+<!-- AdminLTE Skins. Choose a skin from the css/skins
+     folder instead of downloading all of them to reduce the load. -->
+<link rel="stylesheet" href="Public/dist/css/skins/_all-skins.min.css">  
+
+
+<!-- Bootstrap 3.3.5 -->
+<script src="Public/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="Public/css/no-more-tables.css">
+
+
+<!-- date-range-picker -->
+<script src="Public/misc/moment.min.js"></script>
+<script src="Public/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- daterange picker -->
+<link rel="stylesheet" href="Public/plugins/daterangepicker/daterangepicker-bs3.css">
+
+
+
+
+<ion-view view-title="积分管理">
+  <ion-content>
+
+
+<div class="wrapper">
+
+
+      <div class="top">
+          <ul style="margin:0px;">
+              <li style="width:30%"><a href="#/tab/member_andLog/{{member.mid}}" class="ryy_return">&lt;&nbsp;返回</a></li>
+              <li style="width:70%"><a href="#/tab/main/{{member.mid}}">我的信息</a></li>
+          </ul>
+      </div>
+
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            积分
+            <small>列表</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="/andMember/index.php"><i class="fa fa-dashboard"></i>首页</a></li>
+            <li><a href="#">积分</a></li>
+          </ol>
+        </section>
+
+
+        <div class="pad margin no-print">
+          <div class="callout callout-info" style="margin-bottom: 0!important;">
+            <h4><i class="fa fa-info"></i> 我的积分情况：</h4>
+            <li style="margin:5px 0px;">
+            1积分兑250毫升水，一元钱等于10积分
+            </li>               
+            <li style="margin:5px 0px;">我的总积分：<span class="badge bg-yellow">{{member.scores}}</span></li>
+            <li style="margin:5px 0px;">可以兑换 <span class="badge bg-yellow">{{member.scores * C.cfg_milliliter}}</span> 毫升水</li>
+          </div>
+        </div>
+
+
+
+    <!-- Main content -->
+        <section class="content">
+          <div class="row" style="margin:0px;">
+            <div class="col-xs-12" style="margin:0px;padding:0">
+
+            <div class="box box-primary">
+                <!-- form start -->
+                  <div class="box-body">
+
+                    <div class="form-group">
+                            <ion-item class="item-input">
+                            <label class="item-input" style="width:100%">
+                            <span class="input-label">开始时间</span>
+                            <input type="date" ng-model="startDate" id="startDate">
+                            </label>
+                            </ion-item>
+                    </div> 
+
+                    <div class="form-group">
+                            <ion-item class="item-input">
+                            <label class="item-input" style="width:100%">
+                            <span class="input-label">结束时间</span>
+                            <input type="date" ng-model="endDate" id="endDate">
+                            </label>
+                            </ion-item>
+                    </div> 
+
+
+                  </div><!-- /.box-body -->
+                  <div class="box-footer" style="text-align:center;">
+                    <button id="sub" class="btn btn-primary" ng-click="search()">查询</button>
+                  </div>
+              </div><!-- /.box -->
+
+
+
+              <div class="box">
+                <div class="box-body">
+                  <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>时间</th>
+                        <th>积分情况</th>
+                        <th>说明</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="vo in list">
+                            <td>
+                              {{vo.addtime * 1000 | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                            <td>{{vo.score}}</td>
+                            <td>{{vo.summary}}</td>
+                          </tr>
+                    </tbody>
+                  </table>
+
+                  <ion-infinite-scroll immediate-check="true" distance="5%" on-infinite="loadMoreData()" ng-if="!moredata" icon="ion-loading-c" ></ion-infinite-scroll>
+                  
+                </div><!-- /.box-body -->
+
+
+                
+              </div><!-- /.box -->
+
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </section><!-- /.content -->
+
+
+
+      </div><!-- /.content-wrapper -->
+
+      
+    
+
+<footer class="main-footer">
+    <div class="pull-right hidden-xs">
+        <b>Version</b> 2.3.0
+    </div>
+    <strong> <a href="{{C.site_url}}">{{C.copyright}}</a>.</strong> </footer>
+
+
+
+
+ </div><!-- ./wrapper -->
+
+
+  </ion-content>
+</ion-view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

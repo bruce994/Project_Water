@@ -1,0 +1,96 @@
+
+<ion-view view-title="详细">
+    <ion-content>
+        <div class="wrapper" style="background:#fff;">
+        
+<div class="detail">
+    <div class="d-img"><span><a href="#/tab/water_life" class="ryy_return m-img"><img src="Public/android/theme/bg/png1.png"></a></span><i><small class="messege"><div class="show11"><ul
+><li style="border:none;"><a href="#/tab/main/{{member.mid}}">消息</a></li></ul></div><img src="Public/android/theme/bg/png2.png" onclick="showSwitch();"></small></i></div>
+    <script type="text/javascript">
+    var ss = 0;
+
+    function showSwitch() {
+        if (ss == 0) {
+            $(".show11").show();
+            ss = 1;
+        } else {
+            $(".show11").hide();
+            ss = 0;
+        }
+
+    }
+    </script>
+    <img ng-src="{{vo.litpic}}" style="width:100%;" />
+</div>
+<div class="center">
+    <div class="case-info"><span>{{vo.title}}</span>
+        <div class="share"><i>月销<cite>{{vo.saleMonth}}笔</cite></i><b onclick="">分享</b></div>
+        <div class="clear"></div>
+        <p><big>积分：{{vo.score}}</big><small>¥：{{vo.score/C.cfg_recharge}}</small></p>
+    </div>
+    <!--
+<div class="select-number"><span>请选择<i>数量</i></span><small>&gt;</small><div class="clear"></div></div>-->
+    <div class="select-number">
+        <!--comment-->
+        <div class="clearfix"></div>
+        <!-- Theme style -->
+        <link rel="stylesheet" href="Public/dist/css/AdminLTE1.min.css">
+        <link rel="stylesheet" href="Public/misc/ionicons.min.css">
+        <link rel="stylesheet" href="Public/misc/font-awesome.min.css">
+        <!-- Chat box -->
+        <div class="box" style="margin:0px;border: solid 1px #E1E1E1;">
+            <div class="box-header"><i class="fa fa-comments-o"></i>
+                <h3 class="box-title">评论</h3></div>
+            <div class="box-body chat" id="chat-box"><span>暂无评价</span>
+                <cite>
+                    <samp style="width:100%;"></samp>
+                </cite>
+            </div>
+            <!-- /.chat -->
+            <div class="box-footer">
+                <div class="input-group">
+                    <input class="form-control" name="content" id="content" placeholder="发表评论...">
+                    <div class="input-group-btn">
+                        <button class="btn btn-success" id="feed"><i class="fa fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.box (chat box) -->
+       
+               
+        <link rel="stylesheet" href="Public/bootstrap/css/bootstrap.min.css">
+        <script src="Public/bootstrap/js/bootstrap.min.js"></script>
+
+        <!--END comment-->
+        <div class="clear"></div>
+    </div>
+    <div class="detail-img">
+        <h2 class="title"><span>图文详情</span></h2>
+        <div ng-bind-html="vo.body">
+        </div>
+    </div>
+</div><a href="javascript:void(0);" class="dh" ng-click="exchange(vo.id,vo.channel,vo.typeid)">立即兑换</a>
+
+<script type="text/javascript" src="Public/android/theme/common/wall.js"></script>
+<script type="text/javascript">
+$(function() {
+    $('.wall').jaliswall({
+        item: '.article'
+    });
+});
+</script>
+
+
+
+         </div>
+        <!-- ./wrapper -->
+    </ion-content>
+</ion-view>
+
+
+
+
+
+
+

@@ -1,0 +1,50 @@
+
+
+<style type="text/css">
+  .pane {background: #eeeeee;}
+</style>
+
+
+<div class="top">
+  <ul style="margin:0px;">
+    <li><a href="#/tab/main/{{member.mid}}" class="ryy_return">&lt;&nbsp;返回</a></li>
+    <li><a href="#/tab/member_andLog/">我的积分</a></li>
+  </ul>
+</div>
+<div class="center">
+  <div class="my-point">
+    <form>
+      <p><span>我的积分</span><i><em><a href="#/tab/member_log">点击查看积分详情</a></em><img src="Public/android/theme/bg/bg9.gif"></i></p>
+      <a href="#">
+        <p>
+          <span>在线充值</span><i><em></em><img src="Public/android/theme/bg/bg9.gif"></i>
+        </p>
+      </a>
+      <a href="#/tab/water_life">
+        <p><span>积分兑换</span><i><em></em><img src="Public/android/theme/bg/bg9.gif"></i></p>
+      </a>
+
+        <a ng-click="openModelTemplate('my-modal',{{$index}})" ng-repeat="v in contents" ><p><span>{{v.title}}</span><i><em></em><img src="Public/android/theme/bg/bg9.gif"></i></p>
+        </a>
+        
+        <p><input type="button" value="退出登录" ng-click="logout();"></p>
+      </form>
+      </div>
+    </div>
+
+
+
+  <script id="my-modal.html" type="text/ng-template" >
+    <ion-modal-view>
+      <ion-header-bar class="bar bar-header bar-positive" style="background-color:#337ab7">
+        <h1 class="title">{{contents[modal_id].title}}</h1>
+        <button class="button button-clear button-primary" ng-click="modal.hide()">关闭</button>
+      </ion-header-bar>
+      <ion-content class="padding">
+             <div ng-bind-html="contents[modal_id].content"></div>
+      </ion-content>
+    </ion-modal-view>
+  </script>
+
+
+

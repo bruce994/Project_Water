@@ -1,0 +1,25 @@
+body, html, 
+.gHeaderWrap, .gNavDashboardWrap,
+.gNavigation, .gSearchBox, .pFeatureWrap, .wrap980, #pNavigation { min-width: 980px; }
+
+.styled_input input, .styled_select select { line-height: 40px; }
+.styled_select select { padding-bottom: 15px; width: 120%; }
+
+#gsearch_str { line-height: 64px; }
+#search_form .search_str { line-height: 50px; }
+
+.test_drive_form_wrapper { background: url('../images/global/1px_bk_90.png'); }
+.hover_overlay:after {  background: url('../images/global/1px_bk_90.png'); }
+.financing_test_drive_wrap { background: url('../images/global/1px_bk_90.png'); }
+#map_side.centerdock { background: url('../images/global/1px_bk_90.png'); }
+.video-js-box{ background: url('../images/global/1px_bk_90.png'); }
+.information_float_mask{ background: url('../images/global/1px_bk_90.png'); }
+.test_drive_wrap { background: url('../images/global/1px_bk_90.png'); }
+.product_gallery_wrap #carousel { background: url('../images/global/1px_bk_90.png'); }
+
+.pSectionPar { background-position: 0 -200px;}
+
+.spin_360_wrap, .spin_360_wrap .mask { width: 100%; height: 500px; }
+
+
+

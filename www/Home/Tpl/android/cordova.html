@@ -1,0 +1,100 @@
+
+<script type="text/javascript" src="/cordova/cordova.js"></script>
+<script src="/cordova/www/Toast.js"></script>
+
+<script type="text/javascript">
+function encodeQR() {
+cordova.plugins.barcodeScanner.scan(
+  function (result) {
+      if(result.format == "QR_CODE"){
+        location.href = result.text;
+      }
+  }, 
+  function (error) {
+      alert("Scanning failed: " + error);
+  });  
+}
+
+
+$(document).ready(function(){
+    document.addEventListener("deviceready", onDeviceReady, false);
+});
+
+
+// PhoneGap加载完毕
+function onDeviceReady() {
+    //按钮事件
+    document.addEventListener("backbutton", onBackKey, false); //返回键
+    //document.addEventListener("menubutton", eventMenuButton, false); //菜单键
+    //document.addEventListener("searchbutton", eventSearchButton, false); //搜索键
+}
+
+
+
+
+<?php 
+M("Member")->where("mid=".$_SESSION [C ( 'USER_AUTH_KEY' )])->save(array("backCount"=>0));
+?>
+
+num = 1;
+//返回键
+function onBackKey(){
+    var cc =  window.location.pathname;
+    //alert(cc);
+    if(cc == "/andMember/index.php/Main/index.html" || cc == "/index.php/Index/andType/tm/android.html" || cc == "/index.php/Index/type/typeid/185/tm/android.html"){
+        $.ajax({
+              url: "/andMember/{:U("Public/backCount",array("time"=>time()))}",
+              type: 'GET',
+              async: false,
+              processData: false,
+              contentType: false, 
+              dataType: "json",
+              success: function (result) {
+                   num = result.num;
+                   console.log("AAA:"+num);
+              },
+              error: function (err) {
+                  alert("哎呀,出错了!请重试!<br>"+JSON.stringify(err))
+              }
+          }); 
+         if (num == 1) {
+            window.plugins.toast.showShortCenter('再点击一次退出', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});
+        }else{
+            navigator.app.exitApp();
+        }
+        return false;
+    }
+    var backUrl= "{$backUrl}";
+    if(backUrl != ""){
+        location.href = backUrl;
+    }else{
+        navigator.app.backHistory();
+    }
+
+ }
+
+
+
+//菜单键
+function eventMenuButton(){
+   // window.plugins.ToastPlugin.show_short('点击了 菜单 按钮!');
+}
+//搜索键
+function eventSearchButton(){
+    //window.plugins.ToastPlugin.show_short('点击了 搜索 按钮!');
+}
+
+
+
+$( document ).ready(function() {
+    $( ".ryy_return" ).click(function() {
+        onBackKey();
+    });
+});
+
+
+</script> 
+
+
+
+

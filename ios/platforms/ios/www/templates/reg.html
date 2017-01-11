@@ -1,0 +1,74 @@
+
+
+<ion-view view-title="注册" style="background-color: #eeeeee;">
+    <ion-content>
+        <div class="wrapper">
+
+<div class="top">
+    <ul>
+        <li><a href="#/tab/login" class="ryy_return">&lt;&nbsp;返回</a></li>
+        <li><a href="#/tab/login">注册账号</a></li>
+        <li><a href="#/tab/member">...</a></li>
+    </ul>
+    
+</div>
+
+<div class="center">
+    <div class="reget">
+        <form id="myForm">
+            <div>
+                <p><span>注册账号</span><i><input type="text"  class="" placeholder="请输入您的手机号码"   name="userid" ng-model="$parent.userid" id="c_tel" class="phone-blur form-control required " minlength=2   ></i></p>
+                <p><span>验证码</span><i style="width:35%"><input type="text" name="code" ng-model="$parent.code" placeholder="请输入验证码"  class="phone-yzm"></i>
+                    <input id="mob_b" type="button" value="获取验证码" class="yzm phone-sub" ng-click="getcode();">
+                    <input id="mob_r" style="display:none;" type="button" value="秒后可以点击重发" class="yzm phone-sub">
+                </p>
+                <p><span>密码</span><i><input type="password" name="userpwd" ng-model="$parent.userpwd"  placeholder="请输入您的密码" class="password required"></i></p>
+                <p><span>重复密码</span><i><input type="password" name="userpwd2" ng-model="$parent.userpwd2" placeholder="再次输入密码" class="again-password required"></i></p>
+                <p><span>推荐人</span><i><input type="text" name="re_userid"  ng-model="$parent.re_userid" placeholder="推荐人账号"></i></p>
+                <!--  <p><span>身份证号</span><i><input type="text" id="cardID"  name="cardID" class="form-control number"  placeholder="身份证号"></i></p> -->
+                
+            </div>
+            <input id="sub" type="button" class="phone-submit" value="注册" ng-click="submit();">
+            <a href="#/tab/login">
+                <input type="button" class="phone-submit" value="登录">
+            </a>
+            <p class="agree">
+                <input type="checkbox" name="pro" value="1" ng-model="$parent.pro"><span>我已阅读并同意<a href="javascript:void(0);" ng-click="openModelTemplate('my-modal')">心乐水用户协议</a></span></p>
+        </form>
+    </div>
+    <div class="clear"></div>
+</div>
+
+    
+         </div>
+        <!-- ./wrapper -->
+    </ion-content>
+</ion-view>
+
+
+
+
+<script id="my-modal.html" type="text/ng-template" >
+<ion-modal-view>
+  <ion-header-bar class="bar bar-header bar-positive" style="background-color:#337ab7">
+    <h1 class="title">心乐水用户协议</h1>
+    <button class="button button-clear button-primary" ng-click="modal.hide()">关闭</button>
+  </ion-header-bar>
+  <ion-content class="padding">
+         {{C.site_protocol}}
+  </ion-content>
+</ion-modal-view>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+

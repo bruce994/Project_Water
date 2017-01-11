@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,maximum-scale=1.0" />
+  <meta name="format-detection" content="telephone=no">
+  <title>{$vo.title}-{:C("site_name")}</title>
+  <meta name="keywords" content="{$vo.title},{$vo.title}" />
+  <meta name="description" content="{$vo.description}" /> 
+
+  <!-- global style --> 
+  <link href="/Home/Tpl/Index/css/reset.css" rel="stylesheet"> 
+  <link href="/Home/Tpl/Index/css/flexslider.css" rel="stylesheet"> 
+  <link href="/Home/Tpl/Index/css/video-js.css" rel="stylesheet">   
+  <link href="/Home/Tpl/Index/css/style.pc.css" rel="stylesheet">
+<!--[if lt IE 9]>
+  <link  type="text/css" href="/Home/Tpl/Index/css/ie8.css" rel="stylesheet" />
+<![endif]-->
+<!-- JS --> 
+  <script src="/Home/Tpl/Index/js/jquery-1.11.3.min.js" charset="utf-8"></script>
+    <script src="/Home/Tpl/Index/js/main.js" charset="utf-8"></script>
+<!--[if lt IE 10]>
+      <script src="/Home/Tpl/Index/js/placeholders.min.js" charset="utf-8"></script>
+<![endif]-->
+<script type="text/javascript" src="/Home/Tpl/Index/js/global.js" charset="utf-8"></script>
+
+
+
+<link rel="stylesheet" href="/Home/Tpl/Index/xiaoyun/css/bootstrap.min.css">
+<link rel="stylesheet" href="/Home/Tpl/Index/xiaoyun/css/style.css">
+<script src="/Home/Tpl/Index/xiaoyun/libs/bootstrap/3.3.4/js/bootstrap.min.js" type="text/javascript"></script>
+
+
+
+</head>
+
+  <body>
+
+    <include file="head" />
+
+   
+   
+
+
+ <!-- main begin -->
+  <div class="wrap">
+  <div class="content-panel">
+<div class="container">
+<div class="col-md-12 blog-post blog-post-articl">
+<div class="post post-articl clearfix">
+<div class="container nav-pos-xs">
+<ol class="breadcrumb col-md-5"><li><a href="/">首页</a></li>
+  <li class="active">{$type.typename}</li>
+</ol>
+</div>
+<h1 class="post-title"> {$vo.title} </h1>
+<div class="post-info">{$type.typename} / {$vo['pubdate']|date="Y-m-d H:i",###}   </div>
+<div class="post-info"> 兑换积分：<b>{$vo.score}</b>  </div>
+<div class="post-info"> ￥:<b><?php echo $vo['score']/C("cfg_recharge");?>元</b>  </div>
+<div class="post-content" style="text-indent: 2em;line-height: 1.8em;">
+    <neq name="vo.litpic" value="">
+      <p><img src="{$vo.litpic}" /> </p>
+    </neq>
+    {$vo.body}
+</div>
+
+  <div class="jumbotron-wifi" style="margin-top:12px;">
+    <a href="javascript:void(0);" class="exchange" data-aid="{$vo.id}" data-typeid="{$vo.typeid}" data-channel="{$vo.channel}">马上兑换</a>
+  </div>
+
+    <div class="col-md-12 dingw">
+<div class="bdsharebuttonbox" id="bdshare-button">
+<a href="#" class="icon xyi-weibo2 bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+<a href="#" class="icon xyi-qq2 bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+<a href="#" class="icon xyi-wechat2 bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+<div class="btn-share">分享：</div>
+</div>
+</div>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{},"image":{"viewList":["weixin","tsina","sqq"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["weixin","tsina","sqq"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+</div>
+</div>
+
+
+
+        <div class="clearfix"></div>
+
+        <!-- Theme style -->
+        <link rel="stylesheet" href="__PUBLIC__/dist/css/AdminLTE1.min.css">
+        <link rel="stylesheet" href="__PUBLIC__/misc/ionicons.min.css">
+        <link rel="stylesheet" href="__PUBLIC__/misc/font-awesome.min.css">
+ 
+         <!-- Chat box -->
+              <div class="box" style="margin-top:25px;border: solid 1px #E1E1E1;">
+                <div class="box-header">
+                  <i class="fa fa-comments-o"></i>
+                  <h3 class="box-title">评论</h3>
+                </div>
+                <div class="box-body chat" id="chat-box">
+                 
+                  <?php
+                    $feedback = M("Feedback")->where("aid=".$vo['aid']." and ischeck=1")->order("dtime desc")->select();
+                    foreach ($feedback as $f) {
+                        if($f['mid']){
+                          $member = M("Member")->where("mid=".$f['mid'])->field("userid,face")->find(); 
+                          $face =  empty($member['face'])?'/Public/images/face.png':$member['face'];
+                          $userid =  $member['userid'];
+                        }else{
+                          $face =  '/Public/images/face.png';
+                          $userid =  '游客';
+                        }
+                   ?>
+                     <!-- chat item -->
+                          <div class="item">
+                            <img src="{:$face}" alt="user image">
+                            <p class="message">
+                              <a href="#" class="name">
+                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> {:time_tran($f['dtime'])}</small>
+                                {:$userid}
+                              </a>
+                              {:$f['msg']}
+                            </p>
+                          </div><!-- /.item -->
+                  <?php
+                    }
+                  ?>
+     
+                </div><!-- /.chat -->
+                <div class="box-footer">
+                  <div class="input-group">
+                    <input class="form-control" name="content" id="content" placeholder="发表评论...">
+                    <div class="input-group-btn">
+                      <button class="btn btn-success" id="feed"><i class="fa fa-plus"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- /.box (chat box) -->
+
+
+<script type="text/javascript">
+  $('#feed').click(function(){
+
+      content = $("#content").val();
+      if(content == ''){
+          alertMsg('评论内容不能为空！');
+          return;
+      }
+
+      var postData = new FormData();
+      postData.append("aid", {$vo.aid});
+      postData.append("typeid", {$vo.typeid});
+      postData.append("content", content);
+
+         $.ajax({
+              url: "/Member{:U("Public/feedback")}",
+              type: 'POST',
+              data: postData,
+              processData: false,
+              contentType: false,
+              dataType: "json",
+              success: function (result) {
+                    alertMsg(result.msg);
+                    $("#content").val('');
+              },
+              error: function (err) {
+                  alert("哎呀,出错了!请重试!<br>"+JSON.stringify(err))
+              }
+          });
+      
+  });
+</script>
+
+
+
+
+
+</div>
+
+
+
+  </div>
+  </div>
+  <!-- main end -->
+
+
+
+
+<include file="footer" />
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">登录</h4>
+      </div>
+      <div class="modal-body">
+         
+ <form action="/Member{:U("Public/checkLogin")}" method="post">
+          <div class="form-group has-feedback">
+            <input type="text" name="username"  class="form-control" placeholder="用户名">
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" name="password" class="form-control" placeholder="密码">
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+
+          <div class="row" style="margin-bottom:15px;">
+            <div class="col-xs-4">
+              <input type="text" name="verify" class="form-control" placeholder="验证码">
+            </div><!-- /.col -->
+            <div class="col-xs-3" style="margin-left:12px;">
+              <img id="verifyImg" SRC="{:U('Public/verify')}" onClick="fleshVerify()" border="0" alt="点击刷新验证码" style="cursor:pointer" align="absmiddle">
+            </div><!-- /.col -->
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
+            </div><!-- /.col -->
+          </div>
+        </form>
+
+
+        <div class="social-auth-links text-center">
+          <p>- OR -</p>
+          <a href="/Member{:U("Public/reg")}"><button class="btn btn-block btn-info">注册</button></a>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script type="text/javascript">
+  $('.exchange').click(function(){
+      <?php 
+        if ($_SESSION [C ( 'USER_AUTH_KEY' )]){
+      ?> 
+
+      var postData = new FormData();
+      postData.append("id", $(this).attr("data-aid"));
+      postData.append("typeid", $(this).attr("data-typeid"));
+      postData.append("channel", $(this).attr("data-channel"));
+
+         $.ajax({
+              url: "/Member{:U("Public/exchange")}",
+              type: 'POST',
+              data: postData,
+              processData: false,
+              contentType: false,
+              dataType: "json",
+              success: function (result) {
+                  if (result.code == 0) {
+                      alertMsg(result.msg);
+                      return;
+                  }
+
+                  if (result.code == -1) {
+
+                      bootbox.dialog({
+                        message:  result.msg,
+                        title: "提示",
+                        buttons: {
+
+                          success: {
+                            label: "关闭",
+                            className: "btn-default",
+                          },
+
+                         main: {
+                              label: "去充值",
+                              className: "btn-primary",
+                              callback: function() {
+                                location.href = "/Member{:U("Member/pay")}";
+                              }
+                            }
+
+                        }
+                      });
+
+                      return;
+                  }                  
+
+                  
+                  bootbox.dialog({
+                    message:  result.msg,
+                    title: "提示",
+                    buttons: {
+
+                      success: {
+                        label: "关闭",
+                        className: "btn-default",
+                      },
+
+                     main: {
+                          label: "进后台",
+                          className: "btn-primary",
+                          callback: function() {
+                            location.href = "/Member{:U("Shop/index",array("ss"=>2))}";
+                          }
+                        }
+
+                    }
+                  });
+
+
+
+
+              },
+              error: function (err) {
+                  alert("哎呀,出错了!请重试!<br>"+JSON.stringify(err))
+              }
+          });
+
+      <?php  }else{  ?>  
+        $('#myModal').modal({show:true});
+      <?php }  ?>
+  });
+
+ function fleshVerify(type){ 
+  //重载验证码
+  var timenow = new Date().getTime();
+  if (type){
+    $('#verifyImg').attr("src", '/Member{:U('Public/verify',array('type'=>1,'t'=>time()))}');
+  }else{
+    $('#verifyImg').attr("src", '/Member{:U('Public/verify',array('t'=>time()))}');
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

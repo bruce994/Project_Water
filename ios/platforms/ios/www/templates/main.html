@@ -1,0 +1,231 @@
+
+
+<div class="top" style="height:130px;">
+<ul style="margin:0px;">
+<li><a href="#/tab/water_life">水生活</a></li>
+<li><a href="#/tab/water_ring/all" >健康圈</a></li>
+<li><a href="#/tab/main/{{member.mid}}" class="hover">我的水</a></li>
+</ul>
+<div class="clear"></div>
+
+<div class="myself">
+<a href="#/tab/member">
+<img ng-src="{{member.face}}" class="my"><span><i>{{member.uname}}</i><i>{{member.userid}}</i></span><img ng-src="{{member.qrcode_url}}" width="30" height="30" class="mm">
+</a>
+</div>
+
+</div>
+
+<div class="center mypoint">
+
+<div class="border"><a href="#/tab/member_andLog/{{member.mid}}">积分 {{member.scores}}<small>积分详情</small></a><a href="#/tab/member_order" style="border:none;">我的订单<small>订单详情</small></a></div>
+<div class="border"><span>我的签到</span><i>本月已签到<em>{{member.checkInCount}}</em>天</i><samp style="cursor: pointer;" ng-bind="regText || '签到领积分'" ng-click="registration()"  ng-class="{true: 'samp1'}[isActive]" ></samp></div>
+
+<div class="b-img">
+
+</div>
+
+</div>
+
+
+
+<style>
+
+canvas {
+  z-index: 100;
+}
+.labelLink{  
+  font-size: 30px;
+}
+.labelPercentage {
+  font-size: x-large;
+}
+ 
+.labelText {
+  font-size: 16px;
+}
+ 
+.labelContainer {
+  display: block;
+  text-align: center;
+  width: 100px;
+  font-family: Helvetica;
+  top: -207px; 
+  left: 270px; 
+}
+
+
+
+</style>
+<script>
+var doughnutWidget = {
+  charts: {},
+
+  prettyNumber: function(n) {
+    // pretty count
+    return (n + '').replace(/./g, function(c, i, a) {
+      return i && c !== "." && ((a.length - i) % 3 === 0) ? ',' + c : c;
+    });
+  },
+
+  positionLabel: function(value) {
+    var container = {
+      top: $('#' + value).offset().top,
+      left: $('#' + value).offset().left,
+      height: $('#' + value).height(),
+      width: $('#' + value).width()
+    }
+
+    var label = {
+      height: $('#' + value + 'Label').height(),
+      width: $('#' + value + 'Label').width()
+    }
+
+    // find position
+    var position = {
+      top: container.top + container.height / 2 - (label.height / 2),
+      left: container.left + container.width / 2 - (label.width / 2)
+    }
+
+    $('#' + value + 'Label').offset(position);
+  },
+
+  createCanvas: function(value, o) {
+    var canvas;
+    if (doughnutWidget.options) {
+    console.log(doughnutWidget.options);
+      canvas = $('<canvas>', { id: value, width: doughnutWidget.options.width, height: doughnutWidget.options.height, class: doughnutWidget.options.class});
+    } else {
+
+      canvas = $('<canvas>', { id: value, width: o.width, height: o.height});
+
+      if (o.class) {
+        canvas.addClass(o.class);
+      }
+    }
+
+    if (doughnutWidget.options && doughnutWidget.options.container) {
+      doughnutWidget.options.container.append(canvas);
+    } else {
+      o.container.append(canvas);
+    }
+  },
+
+  render: function(o) {
+    for (var value in o) {
+      if (!doughnutWidget.charts[value + 'Chart']) {
+        // create canvas
+        doughnutWidget.createCanvas(value, o[value]);
+
+        // create chart
+        doughnutWidget.charts[value + 'Chart'] = new Chart($('#' + value).get(0).getContext('2d')).Doughnut(
+          [{
+            value: o[value].val,
+            label: '1',
+            color: o[value].color
+          }, {
+            value: 100 - o[value].val,
+            color: '#F0F0F0'
+          }],
+          {
+            percentageInnerCutout: (doughnutWidget.options && doughnutWidget.options.cutout) ? doughnutWidget.options.cutout : 75,
+            animationEasing: 'easeOut',
+            showTooltips: false,
+          });
+
+        // create the labels
+        var perc = $('<div class="labelPercentage"><a href="' + (o[value].link ? o[value].link : '#') + '" class="labelLink">' + o[value].val + '%</a></div>');
+
+        var label = $('<span id="' + value + 'Label" class="labelContainer" ></span>');
+        label.append(perc);
+        label.append('<div class="labelText">' + value + '</div>');
+
+        $( (doughnutWidget.options && doughnutWidget.options.container ? doughnutWidget.options.container : o[value].container) ).append(label);
+
+        // click handler
+        if (o[value].click) {
+          $('#' + value + 'Label .labelLink').click(o[value].click);
+        }
+      } else {
+        // update the charts
+        doughnutWidget.charts[value + 'Chart'].segments[0].value = o[value].val;
+        doughnutWidget.charts[value + 'Chart'].update();
+
+        var perc = $('#' + value + 'Label .labelLink');
+        perc.html(o[value].val + '%');
+      }
+
+      doughnutWidget.positionLabel(value);
+    }
+
+  }
+}
+
+</script>
+<script>
+
+
+
+
+
+$( document ).ready(function() {
+  doughnutWidget.options = {
+    container: $('#container'),
+    width: 100,
+    height: 100,
+    class: 'myClass',
+    cutout: 80
+  };
+
+  doughnutWidget.render(data1());
+
+  setInterval(init, 2000);
+
+
+
+  width = $( window ).width();
+  $("#water").width(width);
+  $("#water").height(width/2);
+  $(".labelText").text("储水量");
+  $(".labelContainer").css({"top":"-207px","left":"270px"});
+
+
+});
+
+function init() {
+  doughnutWidget.render(data1());
+}
+
+function data1() {
+    var data = {
+    water: {
+
+            val: 0,
+      color: "#ff8160",
+      click: function(e) {
+        console.log('hi');
+      }
+    },
+  };
+
+  return data;
+}
+
+
+
+</script>
+
+<div id="container" class="margin" role="group" style="padding-top:12px;"></div>
+<div class="b-img" style="padding-top:0px;position: fixed; left: 0px; bottom: 0px; width: 100%;">
+  <div style="margin:0 auto;text-align:center;font-size:16px;">30天取水示意图</div>
+<img src="Public/android/images/bg3-1.png">
+</div>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,122 @@
+
+  <?php 
+  $T = M("Arctype")->where("topid=0")->field("id,typename")->order("sortrank")->select();
+    $reid = 0;
+    if(!empty($_GET['typeid'])){
+    $reid = $type['reid'];
+  }
+  ?>
+
+
+    <div id="mask" style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; background-color: rgb(45, 45, 45); z-index: 9000; opacity: 0.7; display: none; over-flow:hidden;"></div>
+    <header>
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><img src="__PUBLIC__/xiaoyun/images/logo.png"  width="160" height="46"  class="img-responsive"></a>
+          </div>
+          <div class="navbar-collapse collapse navbar-right" id="header-navbar">
+            <ul class="nav navbar-nav">
+
+
+               <li {:empty($_GET['typeid'])?'class="active"':'onmouseover="nactive(this)" onmouseout="cactive(this)"'}  ><a href="/">首页</a></li>
+
+               <?php
+                foreach ($T as $t) {
+                    $cur = 'onmouseover="nactive(this)" onmouseout="cactive(this)"';
+                    if($t['id'] == $_GET['typeid'] || $t['id']==$reid){
+                      $cur = 'class="active"';
+                    }
+                ?>
+                  <li {:$cur} ><a href="{:U("Index/type",array("typeid"=>$t['id']))}">{:$t['typename']}</a></li>
+
+                <?php
+
+                }
+              ?>
+              <!-- /.循环分类 -->
+
+
+              <!--
+              <li class="dropdown " onmouseover="nactive(this)" onmouseout="cactive(this)">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">产品</a>
+                <ul class="dropdown-menu">
+                  <?php
+                  $A = M("Archives")->where("arcrank=0 and channel=45")->limit("0,10")->field("id,title")->order("pubdate desc")->select();
+                  foreach ($A as $a) {
+                  echo '<li onmouseover="nactive(this)" onmouseout="cactive(this)" ><a href="'.U("Index/article",array("id"=>$a['id'])).'" hidefocus="true" >'.$a['title'].'</a></li>';
+                  }
+                  ?>
+                </ul>
+              </li>
+              -->
+
+            <?php 
+              if ($_SESSION [C ( 'USER_AUTH_KEY' )]){
+            ?> 
+                  <li class="hidden-xs"><a href="/Member/" class="xyicon xyi-btn">{:$_SESSION['member']['userid']}</a></li>
+            <?php  }else{  ?>  
+                    <li class="hidden-xs"><a href="/Member/" class="xyicon xyi-btn" style="background-position:-90px 0; color:#fff ">登录</a></li>
+                    <li class="hidden-xs"><a href="/Member{:U("Public/reg")}" class="xyicon xyi-btn" style="background-position:-90px 0; color:#fff ">注册</a></li>
+            <?php }  ?>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+      <div class="navbar-collapse2 collapse navbar-right" id="header-navbar">
+      <ul class="nav navbar-nav">
+
+        <!--
+        <li class="open " onmouseover="nactive(this)" onmouseout="cactive(this)">
+          <a href="javascript:;">产品</a>
+          <ul class="dropdown-menu">
+            <?php
+            $A = M("Archives")->where("arcrank=0 and channel=45")->limit("0,10")->field("id,title")->order("pubdate desc")->select();
+            foreach ($A as $a) {
+            echo '<li onmouseover="nactive(this)" onmouseout="cactive(this)" ><a href="'.U("Index/article",array("id"=>$a['id'])).'" hidefocus="true" >'.$a['title'].'</a></li>';
+            }
+            
+            ?>
+          </ul>
+        </li>
+         -->
+
+
+         <li {:empty($_GET['typeid'])?'class="active"':'onmouseover="nactive(this)" onmouseout="cactive(this)"'}  ><a href="/">首页</a></li>
+
+         <?php
+          foreach ($T as $t) {
+              $cur = 'onmouseover="nactive(this)" onmouseout="cactive(this)"';
+              if($t['id'] == $_GET['typeid'] || $t['id']==$reid){
+                $cur = 'class="active"';
+              }
+          ?>
+            <li {:$cur} ><a href="{:U("Index/type",array("typeid"=>$t['id']))}">{:$t['typename']}</a></li>
+
+          <?php
+          }
+        ?>
+        <!-- /.循环分类 -->
+
+
+        <?php 
+          if ($_SESSION [C ( 'USER_AUTH_KEY' )]){
+        ?> 
+              <li class="hidden-xs"><a href="/Member/" class="xyicon xyi-btn">{:$_SESSION['member']['userid']}</a></li>
+        <?php  }else{  ?>  
+                <li class="hidden-xs"><a href="/Member/" class="xyicon xyi-btn">用户登录</a></li>
+        <?php }  ?>
+        
+      </ul>
+      </div>
+
+    </header>
+

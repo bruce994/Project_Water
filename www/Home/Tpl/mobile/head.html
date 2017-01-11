@@ -1,0 +1,35 @@
+
+      <div class="b-page-overlay"></div>
+      <div class="m-00-header m-00-main-navigation-available"><h3 class="m-00-header-lined-crest"><span class="m-00-crest-wrapper"><a class="m-00-crest" href="{:U("Index/index",array("tm"=>"mobile"))}" title=" - 首页">首页
+    </a></span></h3></div>
+    <div class="m-01-main-navigation b-h orizontal-box-shadow-bottom">
+    <div class="m-01-menu-item">
+     <div style="border-left: 1px solid #666;height: 43px;position: absolute;right: 100px;top: 10px;"></div>
+    <div style="float:right;top: 7px;position: absolute;right: 2px;">
+      <?php
+      if ($_SESSION [C ( 'USER_AUTH_KEY' )]){
+      ?>
+      <p style="text-align:center;line-height:10px;"><a href="/Member/" style="color:#a10333;text-decoration:none" >{:$_SESSION['member']['userid']}</a></p>
+      <p style="line-height:10px;"><a  href="/Member" style="color:#2a4b6d;text-decoration:none;">个人主页</a>
+      <a  href="/Member{:U("Public/logout")}" style="color:#2a4b6d;text-decoration:none;">退出</a></p>
+      <?php  }else{  ?>
+      <a href="/Member/index.php/Public/reg.html"><button type="button" class="btn btn-primary btn-xs" style="background-color: #2a4b6d;border-color: #2a4b6d;">注 册</button></a>
+      <a href="/Member/"><button type="button" class="btn btn-primary btn-xs" style="background-color: #2a4b6d;border-color: #2a4b6d;">登 录</button></a>
+      
+      <br/><a href="javascript:void(0);"><button type="button" class="btn btn-primary btn-xs" style="margin-top:1px;background-color: #2a4b6d;border-color: #2a4b6d;" data-toggle="modal" data-target="#myModalApp">APP下载</button></a>
+
+
+      <?php }  ?>
+    </div>
+
+    <div class="m-01-sub-menu m-01-level-1">
+      <div class="m-01-menu-section" id="m-01-model-menu">
+      </div>
+      
+      <div class="m-01-menu-section" id="m-01-blue-buttons">
+      </div>
+    </div>
+  </div>
+  </div>
+
+

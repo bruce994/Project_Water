@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width,maximum-scale=1.0" />
+  <meta name="format-detection" content="telephone=no">
+  <title>{$vo.title}-{:C("site_name")}</title>
+  <meta name="keywords" content="{$vo.title},{$vo.title}" />
+  <meta name="description" content="{$vo.description}" /> 
+
+  <!-- global style --> 
+  <link href="/Home/Tpl/Index/css/reset.css" rel="stylesheet"> 
+  <link href="/Home/Tpl/Index/css/flexslider.css" rel="stylesheet"> 
+  <link href="/Home/Tpl/Index/css/video-js.css" rel="stylesheet">   
+  <link href="/Home/Tpl/Index/css/style.pc.css" rel="stylesheet">
+<!--[if lt IE 9]>
+  <link  type="text/css" href="/Home/Tpl/Index/css/ie8.css" rel="stylesheet" />
+<![endif]-->
+<!-- JS --> 
+  <script src="/Home/Tpl/Index/js/jquery-1.11.3.min.js" charset="utf-8"></script>
+    <script src="/Home/Tpl/Index/js/main.js" charset="utf-8"></script>
+<!--[if lt IE 10]>
+      <script src="/Home/Tpl/Index/js/placeholders.min.js" charset="utf-8"></script>
+<![endif]-->
+<script type="text/javascript" src="/Home/Tpl/Index/js/global.js" charset="utf-8"></script>
+
+<link rel="stylesheet" href="/Home/Tpl/Index/xiaoyun/css/bootstrap.min.css">
+<link rel="stylesheet" href="/Home/Tpl/Index/xiaoyun/css/style.css">
+<script src="/Home/Tpl/Index/xiaoyun/libs/bootstrap/3.3.4/js/bootstrap.min.js" type="text/javascript"></script>
+
+  </head>
+  <body>
+
+  
+<include file="head" />
+
+   
+
+<div class="wrap">
+  <div class="hidden-xs">
+    <img src="__PUBLIC__/xiaoyun/images/aboutbg1.png" alt="" width="1920" height="540" class="img-responsive">
+  </div>
+  <div class="visible-xs">
+    <img src="__PUBLIC__/xiaoyun/images/aboutbg2.png" alt="" width="1200" height="540" class="img-responsive">
+  </div>
+  <div class="container">
+    <div class="jumbotron aboutj text-center">
+      <h1 style="color:#333;">About Us</h1>
+      <p>
+        {$type.content}
+      </p>
+    </div>
+  </div>
+  <div class="container">
+  </div>
+  <div class="container aboutmap">
+    <img src="__PUBLIC__/xiaoyun/images/map.png" class="center-block img-responsive">
+  </div>
+  <div class="desc aboutdesc text-center">
+    办公环境：上海嘉定区博园路1333号北虹桥电商产业园8号楼9层  <br>TEL: {:C("site_tel")}
+  </div>
+</div>
+
+
+
+
+
+
+
+<include file="footer" />
+<script>
+$(document).ready(function(){
+/**
+* #back-to-top event
+*/
+$(window).scroll(function(){
+if ($(this).scrollTop() > 100) {
+$('#back-to-top').fadeIn();
+} else {
+$('#back-to-top').fadeOut();
+}
+});
+$('#back-to-top').on('click', function(e){
+e.preventDefault();
+$('html, body').animate({scrollTop : 0},1000);
+return false;
+});
+$('#back-to-top2').on('click', function(e){
+e.preventDefault();
+$('html, body').animate({scrollTop : 0},1000);
+return false;
+});
+$('li.dropdown').mouseover(function() {
+$(this).addClass('open');    }).mouseout(function() {        $(this).removeClass('open');    });
+});
+function nactive(obj) {
+var c = obj.getAttribute('class');
+if (c == 'active') {
+return false;
+}
+if (c == null) {
+var nc = 'active';
+} else if (c == undefined) {
+var nc = 'active';
+} else if (c.indexOf('active') <= 0) {
+var nc = c + " active";
+}
+obj.setAttribute("class", nc);
+}
+function cactive(obj) {
+var c = obj.getAttribute('class');
+if (c == null || c == undefined) {
+return false;
+}
+var nc = c.replace(/active/ig, ' ');
+obj.setAttribute("class", nc);
+}
+$('.navbar-toggle').on('click', function(e){
+e.preventDefault();
+$('body').toggleClass("nav-open");
+$('#mask').show();
+return false;
+});
+$('#mask').on('tap', function(e) {
+$('body').toggleClass("nav-open");
+$('#mask').hide();
+return false;
+});
+$('#mask').bind("touchmove",function(e){
+e.preventDefault();
+});
+$('#ld-d1').on('click', function(e){
+e.preventDefault();
+$('#ld-d1').hide();
+$('#ld-d2').show();
+$('#data2').hide();
+$('#data1').show();
+return false;
+});
+$('#ld-d2').on('click', function(e){
+e.preventDefault();
+$('#ld-d2').hide();
+$('#ld-d1').show();
+$('#data1').hide();
+$('#data2').show();
+return false;
+});
+</script>     <div id="discuz_tips" style="display:none;"></div>
+
+</body>
+</html>

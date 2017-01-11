@@ -1,0 +1,74 @@
+
+
+body, html { font-family: "MyriadSetPro-Thin", Helvetica, Arial, sans-serif; font-size: 0.9em; line-height: 1.3; }
+h1,h2,h3,h4,h5 { font-family: "MyriadSetPro-Thin"; font-weight: 300; }
+input,select { font-family: "MyriadSetPro-Thin"; }
+.gNav { background-image: url('../../images/global/en_us/bg_gNav_100x16.png'); background-image: -webkit-linear-gradient(transparent, transparent), url('../../images/svg/en_us/gNav.svg'); /* Safari 5.1 to 6.0 */ background-image: -moz-linear-gradient(transparent, transparent), url('../../images/svg/en_us/gNav.svg'); /* FF 3.6 to 15 */ background-image: linear-gradient(transparent, transparent), url('../../images/svg/en_us/gNav.svg'); }
+.gNav.cf14K { width: 96px; background-position: center 0; }
+.gNav.cf11 { width: 82px; background-position: center -16px; }
+.gNav.cf14 { width: 82px; background-position: center -32px; }
+.gNav.buy { width: 22px; background-position: center -48px; }
+.gNav.own { width: 24px; background-position: center -64px; }
+.gNav.about { width: 36px; background-position: center -80px; }
+.gNav.cars { width: 28px; background-position: center -96px; }
+
+a.btn { font-size: 1em; } /* default width is 100px */
+
+
+.main_nav_dropdown { background-image: url("../../images/global/en_us/dropdown_menu_bg_430x258.png"); }
+.dropdownMenuItem { font-size: 1em;}
+.main_nav_dropdown.buy  {  margin-left: -205px; }
+.main_nav_dropdown.about  {  margin-left: -198px; }
+.main_nav_dropdown.cars  {  margin-left: -90px; }
+.pFeatureWrap h3 {margin: 180px auto 15px;}
+@media screen and (max-width: 1280px){
+	.pFeatureWrap h3 {margin: 90px auto 15px;}
+}
+#pNavigation .navItem { background: #000 url('../../images/products/en_us/bg_pNav_74x45.png') 0 0 no-repeat; opacity: 1; filter: Alpha(opacity=100); background-image: -webkit-linear-gradient(transparent, transparent), url('../../images/svg/en_us/pNav.svg'); /* Safari 5.1 to 6.0 */ background-image: -moz-linear-gradient(transparent, transparent), url('../../images/svg/en_us/pNav.svg'); /* FF 3.6 to 15 */ background-image: linear-gradient(transparent, transparent), url('../../images/svg/en_us/pNav.svg'); background-size: 74px auto; }
+#pNavigation .btn_testDrive { background-image: url('../../images/products/en_us/btn_test_drive_145x45.png'); background-image: -webkit-linear-gradient(transparent, transparent), url('../../images/svg/en_us/btn_test_drive.svg'); /* Safari 5.1 to 6.0 */ background-image: -moz-linear-gradient(transparent, transparent), url('../../images/svg/en_us/btn_test_drive.svg'); /* FF 3.6 to 15 */ background-image: linear-gradient(transparent, transparent), url('../../images/svg/en_us/btn_test_drive.svg'); background-size: 145px auto; }
+#pNavigation .btn_dealers { background-image: url('../../images/products/en_us/btn_test_dealers_145x45.png'); background-image: -webkit-linear-gradient(transparent, transparent), url('../../images/svg/en_us/btn_test_dealers.svg'); /* Safari 5.1 to 6.0 */ background-image: -moz-linear-gradient(transparent, transparent), url('../../images/svg/en_us/btn_test_dealers.svg'); /* FF 3.6 to 15 */ background-image: linear-gradient(transparent, transparent), url('../../images/svg/en_us/btn_test_dealers.svg'); background-size: 145px auto; }
+
+/* products */
+.flexslider h4.feature { font-size: 1.5em; }
+.cf11_storage .caption2 { top: 49%; }
+.qloud_intro h3 { font-size: 2em; }
+.intro_qoros_qloud .qloud_intro { top: 0; }
+.cf14k_mirror { height: 325px; }
+.cf14_int2 .seats { height: 675px; }
+
+.color_options .label { bottom: 0; bottom: 15px; width: 60px; font-size: 0.85em; text-align: left; }
+/* financing */
+.loans_picker .plan .headline { font-size: 1.5em; }
+.financing_low_apr_wrap,.financing_standard_wrap { height: 900px; }
+
+/* our company */
+.company_footprint_wrap .intro { top: 20%; text-align: left; }
+
+/* qoros qloud */
+.qloud_smart_driving h2 { line-height: 1; }
+
+/* search */
+.search_result.cf14k, .search_result.cf11, .search_result.cf14 { background-image: url('../../images/global/en_us/dmenu_cars_150x82.jpg'); }
+
+/* dealers */
+.dealer_block .dealer_name, .map_block .dealer_name { width: 80%; }
+.dealer_block .dealer_details { width: 80%; }
+
+/* cf14k */
+.cf14k_mirror { height: 385px; }
+
+
+@media screen and (-webkit-min-device-pixel-ratio: 2), (min--moz-device-pixel-ratio: 1.5) { 
+	.main_nav_dropdown { background-image: url("../../images/global/en_us/dropdown_menu_bg_430x258_x2.png"); background-size: auto 258px; }
+	.search_result.cf14k, .search_result.cf11, .search_result.cf14 { background-image: url('../../images/global/en_us/dropdown_menu_bg_430x258_x2.png'); }
+
+
+}
+@media screen and (max-width: 980px) {
+
+.cf14_ext2 .keylessEntry { height: 292px; }
+.cf14_ext2 .sunroof { height: 285px; }
+.cf14_int2 .seats { height: 520px; }
+.cf14k_mirror { height: 325px;}
+
+}

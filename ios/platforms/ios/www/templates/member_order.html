@@ -1,0 +1,133 @@
+<style type="text/css">
+  .popup-body{text-align: center;}
+</style>
+<ion-view view-title="我的订单">
+    <ion-content>
+        <div class="wrapper" style="background:#fff;">
+
+
+
+
+  <div class="top">
+    <ul style="margin:0px;">
+        <li><a href="#/tab/main/{{member.mid}}" class="ryy_return">&lt;&nbsp;返回</a></li>
+        <li><a href="#/tab/main/{{member.mid}}">我的信息</a></li>
+    </ul>
+</div>
+<div class="my-info" style="padding-bottom:0;">
+    <dl>
+        <dd style="border-top:none;"><span>健康水</span><i><em><a href="#/tab/member_order_all/192/all">查看全部订单</a></em><img src="Public/android/theme/bg/bg10.gif" class="k"></i></dd>
+    </dl>
+</div>
+<table border="0" cellspacing="0" cellpadding="0" class="order">
+    <tr class="bold">
+        <td>订单号</td>
+        <td>状态</td>
+        <td>操作</td>
+    </tr>
+    <tr ng-repeat="vo in list" ng-show="!list.length">
+        <td>{{vo.oid  }}</td>
+        <td>
+            <span ng-if="vo.state==1">已取水</span> 
+            <i ng-if="vo.state==0">未取水</i> 
+        </td>
+        <td>
+            <div>
+                <a href="javascript:void(0);" ng-click="showCode(vo.oid);"><img src="Public/android/theme/bg/bg11.gif"> 取水二维码</a>
+            </div>
+            <div>
+                <a href="javascript:void(0);" ng-click="orderDelete(vo.oid,$index);"><img src="Public/android/theme/bg/bg12.gif"> 取消订单</a>
+            </div>
+        </td>
+    </tr>
+</table>
+</div>
+<div class="my-info" style="padding:0; margin:20px 0;">
+    <dl>
+        <dd style="border-top:none;"><span>积分商城</span><i><em><a href="#/tab/member_order_all/193/all">查看全部订单</a></em><img src="Public/android/theme/bg/bg10.gif" class="k"></i></dd>
+    </dl>
+</div>
+<div class="tmall">
+    <ul>
+        <li>
+            <a href="#/tab/member_order_all/193/0"><img src="Public/android/theme/bg/bg13.gif"><span>待发货</span>
+                <i>{{misc[1]}}</i></a>
+        </li>
+        <!--
+<li><a href="/andMember/index.php/Shop/index/state/0.html"><img src="Public/android/theme/bg/bg14.gif"><span>待发货</span>
+<i>13</i></a></li>
+-->
+        <li>
+            <a href="#/tab/member_order_all/193/1"><img src="Public/android/theme/bg/bg15.gif"><span>待收货</span>
+                <i>{{misc[2]}}</i></a>
+            </a>
+        </li>
+        <li>
+            <a href="#/tab/member_feedback"><img src="Public/android/theme/bg/bg16.gif"><span>待评价</span></a>
+        </li>
+        <li>
+            <a href="tel:021-31832578"><img src="Public/android/theme/bg/bg17.gif"><span>售后</span></a>
+        </li>
+        <li>
+            <a href="#/tab/member_cart"><img src="Public/android/theme/bg/bg18.gif"><span>购物车</span>
+                <i>{{misc[0]}}</i></a>
+        </li>
+        <li>
+            <a href="#/tab/member_collect"><img src="Public/android/theme/bg/bg19.gif"><span>收藏夹</span>
+                <i>{{misc[3]}}</i></a>
+        </li>
+        <div class="clear"></div>
+    </ul>
+</div>
+<div class="new">
+    <h2 style="margin-bottom:0px;">上新</h2>
+    <ul style="margin:0px;">
+        <li ng-repeat="vo in news">
+            <a href="#/tab/water_life_detail/{{vo.id}}"><img ng-src="{{vo.litpic}}"><span>积分：{{vo.score}}</span></a>
+        </li>
+        <div class="clear"></div>
+    </ul>
+</div>
+
+<!--
+<div class="more-case">
+    <h2 style="margin:0px;"><span>猜你喜欢</span></h2>
+    <ul class="wall">
+        <div class="wall-column">
+            <li class="article">
+                <a href="/index.php?m=Index&a=article&id=52&tm=android"><img src="http://www.mw910.com/upload/0/5/0/e/57cd2b8b18a7b.png"><span>7.5升</span><big>积分：30</big></a>
+            </li>
+            <li class="article">
+                <a href="/index.php?m=Index&a=article&id=50&tm=android"><img src="http://www.mw910.com/upload/9/1/a/1/57b183a73f7e9.jpg"><span>0.5升</span><big>积分：2</big></a>
+            </li>
+            <li class="article">
+                <a href="/index.php?m=Index&a=article&id=51&tm=android"><img src="http://www.mw910.com/upload/6/c/4/f/57b184ce21385.jpg"><span>5升</span><big>积分：20</big></a>
+            </li>
+        </div>
+    </ul>
+    <div class="clear"></div>
+</div>
+<script type="text/javascript" src="Public/android/theme/common/wall.js"></script>
+<script type="text/javascript">
+$(function() {
+    $('.wall').jaliswall({
+        item: '.article'
+    });
+});
+</script>
+-->
+
+
+
+
+         </div>
+        <!-- ./wrapper -->
+    </ion-content>
+</ion-view>
+
+
+
+
+
+
+
